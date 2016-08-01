@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        title= 'Gulpstructor'
+        link(rel='stylesheet', href='./css/styles.css')
+        //script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js')
+    body
+        header
+            h1(id='title') Gulpstructor
+                span  v.1.0b
+        main
+            #structure.section
+                h4 Structure
+                .languages
+                    ul#structure_lang
+                .options
+                    ul#structure_opts
+            #style.section
+                h4 Style
+                .languages
+                    ul#style_lang
+                .options
+                    ul#style_opts
+            #script.section
+                h4 Script
+                .languages
+                    ul#script_lang
+                .options
+                    ul#script_opts
+        footer
+        script(src='./js/scripts.js')

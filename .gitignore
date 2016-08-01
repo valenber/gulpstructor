@@ -1,0 +1,4 @@
+.vagrant/
+node_modules/
+pub/
+Gulpf.js
