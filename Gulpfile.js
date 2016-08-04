@@ -4,7 +4,8 @@ const gulp = require('gulp'),
       sass = require('gulp-sass'),
       concat = require('gulp-concat'),
       uglify = require('gulp-uglify'),
-      livereload = require('gulp-livereload');
+      livereload = require('gulp-livereload'),
+      connect = require('gulp-connect');
 
 const path = {
     pug: 'dev/*.pug',
@@ -15,6 +16,13 @@ const path = {
     js_t: 'pub/js/'
 };
 
+//server
+gulp.task('connect', function() {
+    connect.server({
+        root: path.html,
+        livereload: true
+    })
+});
 
 //pug compiler
 gulp.task('pug', function() {
@@ -30,7 +38,8 @@ gulp.task('pug', function() {
 gulp.task('sass', function() {
     return gulp.src(path.sass)
         .pipe(maps.init())
-        .pipe(sass())
+        .pipe(sass({outputStyle: 'compressed'}))
+        .on('error', sass.logError)
         .pipe(maps.write('./'))
         .pipe(gulp.dest(path.css))
         .pipe(livereload());
@@ -54,3 +63,5 @@ gulp.task('watch', function() {
     gulp.watch(path.sass, ['sass']);
     gulp.watch(path.js_s, ['js']);
 });
+
+gulp.task('default', ['connect', 'watch']);

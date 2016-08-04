@@ -1,4 +1,3 @@
-.vagrant/
 node_modules/
 pub/
-Gulpf.js
+_misc/
