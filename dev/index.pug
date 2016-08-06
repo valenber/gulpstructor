@@ -10,32 +10,36 @@ html(lang="en")
             h1(id='title') Gulpstructor
                 span  (v.1.0)
         main
-            #structure.section
+            .section#html
                 .section_title
                     h2 Structure
                 .languages
                     h3 How are you creating markup?
-                    ul#structure_lang
-                    #descr_structure_lang.description
-                .options
-                    ul#structure_opts
-            #style.section
+                    .lang_list
+                        ul
+                    .lang_details
+                        .descr
+                        .opts
+            .section#css
                 .section_title
                     h2 Styles
                 .languages
                     h3 What are you going to use for styling?
-                    ul#style_lang
-                    #descr_style_lang.description
-                .options
-                    ul#style_opts
-            #script.section
+                    .lang_list
+                        ul
+                    .lang_details
+                        .descr
+                        .opts
+            .section#js
                 .section_title
                     h2 Scripts
-                .languages
+                .languages(data-pl_cat='js')
                     h3 How will you write your scripts?
-                    ul#script_lang
-                    #descr_script_lang.description
-                .options
-                    ul#script_opts
+                    .lang_list
+                        ul
+                    .lang_details
+                        .descr
+                        .opts
+                    
         footer
         script(src='./js/scripts.js')

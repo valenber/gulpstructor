@@ -1,0 +1,23 @@
+doctype html
+html
+    head
+        link(rel='stylesheet', href='./css/wrk.css')
+    body
+        div
+            .option_bloc
+                input(type='radio', name='lang', value='php', id='lang_php')
+                label(for='lang_php') PHP
+            .option_bloc
+                input(type='radio', name='lang', value='html', id='lang_html')
+                label(for='lang_html') HTML
+            .option_bloc
+                input(type='radio', name='lang', value='pug', id='lang_pug')
+                label(for='lang_pug') Pug/Jade
+            .all_descr
+                p PHP description
+                p HTML description
+                p Pug/Jade description
+            .all_options
+                h4 PHP Options
+                h4 Pug/Jade Options
+                h4 HTML Options    

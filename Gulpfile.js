@@ -5,14 +5,16 @@ const gulp = require('gulp'),
       concat = require('gulp-concat'),
       uglify = require('gulp-uglify'),
       livereload = require('gulp-livereload'),
-      connect = require('gulp-connect');
+      connect = require('gulp-connect'),
+      jshint = require('gulp-jshint'),
+      stylish = require('jshint-stylish');
 
 const path = {
     pug: 'dev/*.pug',
     html: 'pub/',
     sass: 'dev/sass/**/*.sass',
     css: 'pub/css/',
-    js_s: 'dev/js/*.js',
+    js_s: ['dev/js/toolkit.js', 'dev/js/plugin_library.js', 'dev/js/dom_handler.js'],        //add JS files in desired order
     js_t: 'pub/js/'
 };
 
@@ -20,7 +22,8 @@ const path = {
 gulp.task('connect', function() {
     connect.server({
         root: path.html,
-        livereload: true
+        livereload: true,
+        port: 9000
     })
 });
 
@@ -38,8 +41,7 @@ gulp.task('pug', function() {
 gulp.task('sass', function() {
     return gulp.src(path.sass)
         .pipe(maps.init())
-        .pipe(sass({outputStyle: 'compressed'}))
-        .on('error', sass.logError)
+        .pipe(sass({outputStyle: 'compressed'})).on('error', sass.logError)
         .pipe(maps.write('./'))
         .pipe(gulp.dest(path.css))
         .pipe(livereload());
@@ -49,6 +51,8 @@ gulp.task('sass', function() {
 gulp.task('js', function () {
     return gulp.src(path.js_s)
         .pipe(maps.init())
+        .pipe(jshint())
+        .pipe(jshint.reporter(stylish))
         .pipe(concat('scripts.js'))
         .pipe(uglify())
         .pipe(maps.write('./'))
