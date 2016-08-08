@@ -46,28 +46,30 @@ var plugins = (function() {
 //Plugins Arguments: type, category, title, descr, options(object), name(optional)
 //      Type: 0 - language, 1 - optional processor (e.g. CSSnano)
 //      Category: 0 - structure, 1 - style, 2 - script
+//Options values are displayed in the opposite order
 
 //Structure plugins
-plugins.add(0, 0, 'HTML', 'A markup language used for structuring web-content', {});
-plugins.add(0, 0, 'PHP', 'A server-side scripting language', {});
-plugins.add(0, 0, 'Pug/Jade', 'A terse language for writing HTML templates.',
-            { pretty: ['true', 'false', ' \\t '], ugly: ['very', 'mildly' ]},
+plugins.add(0, 0, 'HTML', 'A markup language used for structuring web-content.', {});
+plugins.add(0, 0, 'PHP', 'A server-side scripting language.', {});
+plugins.add(0, 0, 'Pug/Jade', 'Pug is a high performance template engine heavily influenced by Haml and implemented with JavaScript for Node.js and browsers.',
+            { pretty: ['true', 'false', ' \\t ']},
             'pug');
-plugins.add(1, 0, 'LiveReload', 'Automatically updates your project in the browser. Requires plugin',{});
+plugins.add(1, 0, 'LiveReload', 'Automatically updates your project in the browser. Requires plugin.',{});
 
 //Style plugins
-plugins.add(0, 1, 'CSS', 'CSS Description', {});
-plugins.add(0, 1, 'Sass', 'Sass Description',
-            {outputStyle: ['nested', 'expanded', 'compact', 'compressed']}
+plugins.add(0, 1, 'CSS', 'The language used to define styles for your web pages, including the design, layout and variations in display for different devices and screen sizes.', {});
+plugins.add(0, 1, 'Sass', 'An extension of CSS that adds power and elegance to the basic language. It allows to use variables, nested rules, mixins, inline imports, and more.',
+            {outputStyle: ['nested', 'expanded', 'compact', 'compressed'],
+             sourceComments: ['true', 'false']}
             );
-plugins.add(1, 1, 'CSSnano', 'CSSnano description', {});
-plugins.add(1, 1, 'SourceMaps', 'Creates references to original style files, that make it easier to debug the resulting CSS', {});
+plugins.add(1, 1, 'CSSnano', 'CSSnano description.', {});
+plugins.add(1, 1, 'SourceMaps', 'Creates references to original style files, that make it easier to debug the resulting CSS.', {});
 
 //Script plugins
-plugins.add(0, 2, 'JavaScript', 'JavaScript Description', {});
-plugins.add(0, 2, 'CoffeScript', 'CoffeScript Description', {});
-plugins.add(0, 2, 'TypeScript', 'TypeScript Description', {});
-plugins.add(1, 2, 'Concat', 'Concat Description', {});
+plugins.add(0, 2, 'JavaScript', 'JavaScript Description.', {});
+plugins.add(0, 2, 'CoffeScript', 'CoffeScript Description.', {});
+plugins.add(0, 2, 'TypeScript', 'TypeScript Description.', {});
+plugins.add(1, 2, 'Concat', 'Concat Description.', {});
 plugins.add(1, 2, 'JShint', 'Catches errors and makes suggestion on improving your JavaScript code.', {});
 plugins.add(1, 2, 'Uglify', 'Makes your JS code more compact to improve site performance.', {});
-plugins.add(1, 2, 'SourceMaps', 'Creates references to original script files, that make it easier to debug the resulting JavaScript', {});
+plugins.add(1, 2, 'SourceMaps', 'Creates references to original script files, that make it easier to debug the resulting JavaScript.', {});

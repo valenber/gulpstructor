@@ -7,7 +7,9 @@ const gulp = require('gulp'),
       livereload = require('gulp-livereload'),
       connect = require('gulp-connect'),
       jshint = require('gulp-jshint'),
-      stylish = require('jshint-stylish');
+      stylish = require('jshint-stylish'),
+      postcss = require('gulp-postcss'),
+      a_prefix = require('autoprefixer');
 
 const path = {
     pug: 'dev/*.pug',
@@ -39,9 +41,14 @@ gulp.task('pug', function() {
 
 //sass compiler
 gulp.task('sass', function() {
+    var post_processors = [a_prefix({browsers: ['> 1%']})];
     return gulp.src(path.sass)
         .pipe(maps.init())
-        .pipe(sass({outputStyle: 'compressed'})).on('error', sass.logError)
+        .pipe(sass({
+            outputStyle: 'compressed'
+        }))
+        .on('error', sass.logError)
+        .pipe(postcss(post_processors))
         .pipe(maps.write('./'))
         .pipe(gulp.dest(path.css))
         .pipe(livereload());

@@ -17,7 +17,7 @@ var generate = (function() {
     
     //plugin options list
     function options_list(plugin_name, options_obj) {
-        var list = '';
+        var list = '<h3>Options:</h3>';
         
         for (var option in options_obj) {
             var option_values_arr = options_obj[option],
@@ -29,7 +29,7 @@ var generate = (function() {
                 option_values_html += new_radio;
             }
             
-            var list_item = '<li>' + option_title(option) + option_values_html + '</li>';
+            var list_item = '<li>'+ option_title(option) + option_values_html + '</li>';
             list += list_item;    
         }
         return list;        

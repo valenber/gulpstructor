@@ -18,10 +18,11 @@
             color: $col_txt_lgt
             font-weight: 300
             text-transform: uppercase
+        h3.prompt
             text-align: center
 
 //Selectors for languages
-.languages ul
+.lang_list ul
     margin: 0
     padding: 1em 0 3em
     list-style-type: none
@@ -37,12 +38,13 @@
             padding: 0.75em
             border-radius: 0.75em
             cursor: pointer
-            -webkit-user-select: none
+            user-select: none
         input
             visibility: hidden
         input[type="radio"]:checked + label
             color: $col_accent
             border: $bdr_base_accent
+            background-color: $col_accent_lgt
     
 //Plugin description
 .description
@@ -54,6 +56,63 @@
     p.active
         display: block
         
-//Plugin options
-ul.opts
-    text-align: left
+//Plugin options list
+.lang_details ul.opts
+    @extend .clearfix     //prevent collapse caused by floating children
+    list-style-type: none
+    h3
+        margin-top: 2em
+        margin-bottom: 0.5em
+    li:not(:last-child)
+        margin-bottom: 4.5em
+    li h4
+        float: left
+        width: 25%
+        margin: 0
+        margin-top: 1.5em
+        font-weight: 400
+        user-select: none
+    li div
+        float: left 
+        width: 18.75%
+        text-align: center
+        input, label
+            width: 100%
+            cursor: pointer
+        label
+            -webkit-user-select: none
+        label:before
+            content: ' '
+            display: block
+            border: $bdr_base_drk
+            border-radius: 50%
+            width: 1em
+            height: 1em
+            margin-left: calc(50% - 8px)
+            margin-bottom: 8px
+        input[type='radio']
+            position: fixed
+            right: -3000px
+        input[type='radio']:checked + label:before
+            border: $bdr_base_accent
+            background-color: $col_accent_lgt
+        input[type='radio']:checked + label
+            color: $col_accent
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

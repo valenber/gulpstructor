@@ -62,9 +62,14 @@ var dom_hand = (function() {
         }
         
         //update DOM
-        section_descr.innerHTML = generate.descripion(plugin.descr);                    //display description
-        section_opts.innerHTML = generate.options_list(plugin.name, plugin.options);    //display options
+        section_descr.innerHTML = generate.descripion(plugin.descr);                //display plugin description
         
+        //display plugin options if there are any, else clear the DOM element containing options        
+        if (!empty_obj(plugin.options)) {
+            section_opts.innerHTML = generate.options_list(plugin.name, plugin.options);
+        } else {
+            section_opts.innerHTML = '';
+        }
     }
     
     //Initial render
