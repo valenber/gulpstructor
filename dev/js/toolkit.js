@@ -1,3 +1,4 @@
+//fetch DOM elements shorthand
 function getme(arg_str) {
     var result = document.querySelectorAll(arg_str);
     /*
@@ -9,4 +10,15 @@ function getme(arg_str) {
     } else {
         return result;
     }
+}
+
+//event listeners shorthand
+function add_ears(selector, event, handler) {
+    var target = getme(selector);
+    return target.addEventListener(event, handler || report_target);
+}
+
+//Default event handler
+function report_target(e){      
+    console.log('New event triggered on: ' + e.target);
 }

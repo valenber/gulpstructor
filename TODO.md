@@ -1,4 +1,4 @@
 #TODO
 
-* Style the lists
-* Write files generator module
+* ~~Show/hide language details~~
+* Style the options lists

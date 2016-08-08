@@ -51,7 +51,7 @@ var plugins = (function() {
 plugins.add(0, 0, 'HTML', 'A markup language used for structuring web-content', {});
 plugins.add(0, 0, 'PHP', 'A server-side scripting language', {});
 plugins.add(0, 0, 'Pug/Jade', 'A terse language for writing HTML templates.',
-            { pretty:['true', 'false', '\\t'] },
+            { pretty: ['true', 'false', ' \\t '], ugly: ['very', 'mildly' ]},
             'pug');
 plugins.add(1, 0, 'LiveReload', 'Automatically updates your project in the browser. Requires plugin',{});
 

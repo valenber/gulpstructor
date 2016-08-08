@@ -15,15 +15,15 @@ var dom_hand = (function() {
         lang_details: {
             html: {
                 descr: getme('#html .lang_details .descr'),
-                opts: getme('#html .lang_details .opts')
+                opts: getme('#html .lang_details ul.opts')
             },
             css: {
                 descr: getme('#css .lang_details .descr'),
-                opts: getme('#css .lang_details .opts')
+                opts: getme('#css .lang_details ul.opts')
             },
             js: {
                 descr: getme('#js .lang_details .descr'),
-                opts: getme('#js .lang_details .opts')
+                opts: getme('#js .lang_details ul.opts')
             }
         }
     };
@@ -34,64 +34,19 @@ var dom_hand = (function() {
             lists = [dom.lang_list.html, dom.lang_list.css, dom.lang_list.js];
         
         //append selectors        
-        for (var idx in langs) {           
-            var cat = langs[idx].category;
-            lists[cat].innerHTML = lists[cat].innerHTML + new_lang_selector(langs[idx]);            
+        for (var i in langs) {           
+            var category = langs[i].category;           
+            lists[category].innerHTML += generate.btn_selector(category, langs[i].name, langs[i].title);            
         }
         
         //add event listeners
-        for (var jdx in langs) {
-            var selector_id = '#pl_' + langs[jdx].name;
+        for (var j in langs) {
+            var selector_id = '#pl_' + langs[j].name;
             add_ears(selector_id, 'change', display_lang_details);
         }
     }
     
-    //Generators of HTML elements    
-    function new_lang_selector(plugin) {
-        var section = null;
-        if (plugin.category === 0) {
-            section = 'html';
-        } else if (plugin.category == 1) {
-            section = 'css';
-        } else {
-            section = 'js';
-        }
-        
-        return '<li>' +
-            '<input type="radio" name="' + section + '_lang" value="' + plugin.name + '" id="pl_' + plugin.name + '" >' +
-            '<label for="pl_' + plugin.name + '">' + plugin.title + '</label>' +
-            '</li>';
-    }
-    
-    function new_description(descr) {
-        return '<p>' + descr + '</p>';
-    }
-    
-    function new_option_list(opts_obj) {
-        var prop_count = 0,
-            opts_list_content = '';
-        
-        for (var prop in opts_obj) {
-            prop_count += 1;
-            var opt_name = prop[0].toUpperCase() + prop.slice(1),   //capitalize option key
-                cur_li = '<li>' + opt_name + '</li>';
-            opts_list_content = opts_list_content + cur_li;
-            
-        }
-        return '<ul class="opts_list">' + opts_list_content + '</ul';
-        
-    }
-    
-    //Event listeners and handlers
-    function add_ears(selector, event, handler) {
-        var target = getme(selector);
-        return target.addEventListener(event, handler || report_target);
-    }
-    
-    function report_target(e){
-        console.log(e.target.name + ' - ' + e.target.id);
-    }
-    
+    //Events handlers
     function display_lang_details(e) {
         var pl_name = e.target.id.split('_')[1],
             plugin = null,
@@ -106,20 +61,21 @@ var dom_hand = (function() {
             }
         }
         
-        section_descr.innerHTML = new_description(plugin.descr); 
-        section_opts.innerHTML = new_option_list(plugin.options);
+        //update DOM
+        section_descr.innerHTML = generate.descripion(plugin.descr);                    //display description
+        section_opts.innerHTML = generate.options_list(plugin.name, plugin.options);    //display options
         
     }
     
-    
-    //Render
+    //Initial render
     function render_dom() {
         add_lang_selectors();
     }
+
+    //init the app
+    render_dom();
     
     return {
-        render: render_dom
     };
+    
 })();
-
-dom_hand.render();
