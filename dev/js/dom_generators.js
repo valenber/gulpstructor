@@ -1,12 +1,14 @@
 var generate = (function() {
     //language selector
     function btn_selector(category, name, title) {
-        var section_categories = ['html', 'css', 'js'],
-            section = section_categories[category];
-
+        var radio_name = category + '_lang',
+            radio_value = name,
+            radio_id = 'p_' + category + '_' + name,
+            label_for = radio_id,
+            label_txt = title;
         return '<li>' +
-                    '<input type="radio" name="' + section + '_lang" value="' + name + '" id="pl_' + name + '" >' +
-                    '<label for="pl_' + name + '">' + title + '</label>' +
+                    '<input type="radio" name="' + radio_name + '" value="' + radio_value + '" id="' + radio_id + '" >' +
+                    '<label for="' + label_for + '">' + label_txt + '</label>' +
                 '</li>';
     }
     
@@ -42,7 +44,7 @@ var generate = (function() {
     function option_value(plugin_name, opt_title, opt_value) {
         var radio_name = plugin_name + '_' + opt_title,
             radio_value = opt_value,
-            radio_id = radio_name + '_' + opt_value,
+            radio_id = 'o_' + radio_name + '_' + opt_value,
             label_for = radio_id,
             label_text = opt_value;
         

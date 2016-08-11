@@ -2,7 +2,8 @@ var dom_hand = (function() {
     //Cache library
     var lib = {
         langs: plugins.get_langs(),
-        opts: plugins.get_procs()
+        opts: plugins.get_procs(),
+        cats: ['html', 'css', 'js']       //categories used in IDs of input=radio
     };
     
     //Cache DOM
@@ -31,24 +32,29 @@ var dom_hand = (function() {
     //Display languages
     function add_lang_selectors() {
         var langs = lib.langs,
-            lists = [dom.lang_list.html, dom.lang_list.css, dom.lang_list.js];
+            lists = [dom.lang_list.html, dom.lang_list.css, dom.lang_list.js];            
         
         //append selectors        
         for (var i in langs) {           
-            var category = langs[i].category;           
-            lists[category].innerHTML += generate.btn_selector(category, langs[i].name, langs[i].title);            
+            var i_cat = langs[i].category,
+                input_id_cat = lib.cats[i_cat];
+            
+            lists[i_cat].innerHTML += generate.btn_selector(input_id_cat, langs[i].name, langs[i].title);            
         }
         
         //add event listeners
-        for (var j in langs) {
-            var selector_id = '#pl_' + langs[j].name;
-            add_ears(selector_id, 'change', display_lang_details);
+        for (var j in langs) {           
+            var j_cat = langs[j].category,
+                lbl_id_cat = lib.cats[j_cat];
+            
+            var selector_id = '#p_' + lbl_id_cat + '_'+ langs[j].name;
+            listen_to(selector_id, 'change', display_lang_details);
         }
     }
     
     //Events handlers
     function display_lang_details(e) {
-        var pl_name = e.target.id.split('_')[1],
+        var pl_name = e.target.id.split('_')[2],
             plugin = null,
             section_name = e.target.name.split('_')[0],
             section_descr = dom.lang_details[section_name].descr,

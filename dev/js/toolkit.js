@@ -13,7 +13,7 @@ function getme(arg_str) {
 }
 
 //Adding event listeners - shorthand
-function add_ears(selector, event, handler) {
+function listen_to(selector, event, handler) {
     var target = getme(selector);
     return target.addEventListener(event, handler || report_target);
 }

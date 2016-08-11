@@ -16,7 +16,11 @@ const path = {
     html: 'pub/',
     sass: 'dev/sass/**/*.sass',
     css: 'pub/css/',
-    js_s: ['dev/js/toolkit.js', 'dev/js/plugin_library.js', 'dev/js/dom_generators.js', 'dev/js/dom_handler.js'],        //add JS files in desired order
+    js_s: ['dev/js/toolkit.js',             //add JS files in desired order
+           'dev/js/plugin_library.js', 
+           'dev/js/dom_generators.js', 
+           'dev/js/dom_handler.js', 
+           'dev/js/files_generator.js'],
     js_t: 'pub/js/'
 };
 
