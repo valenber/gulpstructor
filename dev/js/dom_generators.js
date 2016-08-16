@@ -3,7 +3,7 @@ var generate = (function() {
     function btn_selector(category, name, title) {
         var radio_name = category + '_lang',
             radio_value = name,
-            radio_id = 'p_' + category + '_' + name,
+            radio_id = 'l_' + category + '_' + name,
             label_for = radio_id,
             label_txt = title;
         return '<li>' +

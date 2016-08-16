@@ -1,9 +1,9 @@
 var dom_hand = (function() { 
     //Cache library
     var lib = {
-        langs: plugins.get_langs(),
-        opts: plugins.get_procs(),
-        cats: ['html', 'css', 'js']       //categories used in IDs of input=radio
+        langs: plugins.fetch('type', 0),        //0 - languages
+        opts: plugins.fetch('type', 1),         //1 - optional processors
+        cats: ['html', 'css', 'js']       //categories used in IDs of radio buttons
     };
     
     //Cache DOM
@@ -47,7 +47,7 @@ var dom_hand = (function() {
             var j_cat = langs[j].category,
                 lbl_id_cat = lib.cats[j_cat];
             
-            var selector_id = '#p_' + lbl_id_cat + '_'+ langs[j].name;
+            var selector_id = '#l_' + lbl_id_cat + '_'+ langs[j].name;
             listen_to(selector_id, 'change', display_lang_details);
         }
     }

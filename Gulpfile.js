@@ -20,7 +20,13 @@ const path = {
            'dev/js/plugin_library.js', 
            'dev/js/dom_generators.js', 
            'dev/js/dom_handler.js', 
-           'dev/js/files_generator.js'],
+           'dev/js/build_gulp/require.js',
+           'dev/js/build_gulp/file_structure.js',
+           'dev/js/build_gulp/task.js',
+           'dev/js/build_gulp/watch.js',
+           'dev/js/build_npm_install.js',
+           'dev/js/build_gulp.js',
+           'dev/js/input_processor.js'],
     js_t: 'pub/js/'
 };
 

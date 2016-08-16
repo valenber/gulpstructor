@@ -1,9 +1,7 @@
 //Plugins library
-var plugins = (function() {    
-    var library = {
-        languages: [],
-        processors: []
-    };
+var plugins = (function() {
+    
+    var library = [];
     
     var plugin_Class = {
         create: function(type, category, title, descr, options, name) {
@@ -18,35 +16,28 @@ var plugins = (function() {
         }
     };
     
-    function add_plugin(){ 
+    function add_plugin() {
         var new_plugin = plugin_Class.create.apply(this, arguments);        //passes all aruments to plugin_Class.create function
-        if (new_plugin.type === 0) {
-            library.languages.push(new_plugin);          //0 - language, 1 - optional processor (e.g. CSSnano or Uglify)
-        } else {
-            library.processors.push(new_plugin);
-        }
+        library.push(new_plugin);
     }
     
-    function get_all_languages() {
-        return library.languages;
-    }
-    
-    function get_all_processors() {
-        return library.processors;
+    function get_by_prop(prop, val) {
+        return library.filter(function(plugin) {        //return matches of provided property value
+            return plugin[prop] === val;
+        });
     }
     
     return {
         add: add_plugin,
-        get_langs: get_all_languages,
-        get_procs: get_all_processors
+        fetch: get_by_prop
     };
+    
 })();
 
 //POPULATE PLUGINS LIBRARY
 //Plugins Arguments: type, category, title, descr, options(object), name(optional)
 //      Type: 0 - language, 1 - optional processor (e.g. CSSnano)
 //      Category: 0 - structure, 1 - style, 2 - script
-//Options values are displayed in the opposite order
 
 //Structure plugins
 plugins.add(0, 0, 'HTML', 'A markup language used for structuring web-content.', {});
