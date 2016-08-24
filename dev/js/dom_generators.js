@@ -55,7 +55,9 @@ var generate = (function() {
         
         return  '<div>' + 
                     '<input type="radio" name="' + radio_name + '" value="' + opt_value + '" id="' + radio_id + '">' +
-                    '<label for="' + label_for + '">' + label_text + '</label>' +
+                    '<label for="' + label_for + '">' + 
+                        '<span class="opt_lbl_txt">' + label_text + '</span>' +
+                    '</label>' +
                 '</div>';
     }
     

@@ -33,9 +33,10 @@ ul.opts
         input, label
             width: 100%
             cursor: pointer
+            display: block
         label
             -webkit-user-select: none
-        label:before
+        .opt_lbl_txt::before
             content: ' '
             display: block
             border: $bdr_base_drk
@@ -47,7 +48,7 @@ ul.opts
         input[type='radio']
             position: fixed
             right: -3000px
-        input[type='radio']:checked + label:before
+        input[type='radio']:checked + label .opt_lbl_txt::before
             border: $bdr_base_accent
             background-color: $col_accent_lgt
         input[type='radio']:checked + label

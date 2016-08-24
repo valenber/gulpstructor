@@ -15,16 +15,15 @@
     * ~~Change library plugin object to add order property~~
 * ~~Add extras to DOM~~
 * Handler for plugins with multiple pipes/methods
+* Server/Livereload
 * Gulpfile output
 
 ###Later
-* Gulpfile Error handler
-* Server/Livereload
 * PostCSS
 
 ##Bugs
 * ~~Options values are rendered in the reverse order due to CSS styling~~
-* Pseudo radio buttons for options don't react to clicks
-* ERROR if user selected nothing
+* ~~Pseudo radio buttons for options don't react to clicks~~
+* ~~ERROR if user selected nothing~~
 * ~~Gulp object is not reset~~
-* When an extra plugin is unselected its options stay selected
+* ~~When an extra plugin is unselected its options stay selected and produce error~~

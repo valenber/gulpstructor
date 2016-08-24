@@ -59,7 +59,7 @@ function process_input_el(obj, element) {
 //            console.log(name, 'doesn\'t requre compiling');
         }       
 
-    } else if (el_type === 'o') {       //assume target plugin is already added
+    } else if (el_type === 'o') {
         var p_name = el_arr[2],
             p_target = el_arr[1],
             p_order = plugins.get(p_name).order,
@@ -67,9 +67,12 @@ function process_input_el(obj, element) {
                 name: el_arr[3],
                 value: el_arr[4]
             };
+        //if target plugin is already added to gulp tasks object
+        if (obj.require.indexOf(p_name) !== -1) {
+            //save to plugin options array
+            obj.tasks[p_target][p_order].options.push(option_obj);
+        }
         
-        //save to plugin options array
-        obj.tasks[p_target][p_order].options.push(option_obj);
 
     } else {
         console.log('Unknown element type');
