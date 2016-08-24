@@ -1,80 +1,79 @@
-var input = (function() {
-    var data = [],
-        input_object = {};
+//listen to form submit button
+listen_to('#generate_btn', 'click', take_raw_input);
 
-    //listen to form submit button
-    listen_to('#generate_btn', 'click', take_input);
+//collect submitted data
+function take_raw_input(e) {
+    e.preventDefault();
+    
+    var raw_input = getme('input[name]:checked'),
+        gulp_tasks_template = {
+            require: [],
+            tasks: {}
+        };
+    
+    if (raw_input === undefined) {
+        return console.log('No options were selected');     //TODO: Create proper erorr message
+    }
+    
+    //convert NodeList to Array
+    var raw_input_arr = raw_input.length ? [].slice.call(raw_input) : [raw_input];
+    
+    //create gulpfile object
+    var gulp_tasks = raw_input_arr.reduce(process_input_el, gulp_tasks_template);
+    
+    //pass it to gulpfile builder
+    build.gulp_file(gulp_tasks);
+    
+    //pass data to npm installer
+    npm_install(gulp_tasks.require);
+    
+}
 
-    //collect submission data
-    function take_input(e) {
-        e.preventDefault();
-
-        var inputs_raw = getme('input[name]:checked');
-
-        if (inputs_raw) {
-            if (inputs_raw.length) {
-                for (i = 0; i < inputs_raw.length; i++) {
-                    data.push(inputs_raw[i].id);
-                }
-            } else {
-                data.push(inputs_raw.id);     //in case user only makes one selection (see getme function)
+function process_input_el(obj, element) {    
+    var el_arr = element.id.split('_'),
+        el_type = el_arr[0]; 
+    
+    if (el_type === 'p') {              //assume all plugins are unique
+        var name = el_arr[1],
+            p = plugins.get(name),
+            order = p.order;
+        
+        if (order !== -1) {
+            var target = p.category,
+                plugin_obj = {
+                    name: name,
+                    options: []
+                };
+            if (p.methods) {
+                plugin_obj.methods = p.methods;
             }
+
+            //save to require list
+            obj.require.push(name);
+
+            //save to tasks
+            obj.tasks[target] = obj.tasks[target] || [];        //if not defined set to array
+            obj.tasks[target][order] = plugin_obj;
+            
         } else {
-            console.log('nothing selected');
-        }
-        //TESTING DATA
-        data = ["l_html_pug", "o_pug_pretty_\t", "l_css_sass", "o_sass_outputStyle_compressed", "o_sass_sourceComments_true", "l_js_typescript", "x_css_cssnano"];
-        
-        data.forEach(process_data);
-        
-        console.log(input_object);
-        build.gulp_file(input_object);
-        npm_install(input_object);
-    }
+//            console.log(name, 'doesn\'t requre compiling');
+        }       
 
-    function process_data(data_item) {
-        var i_arr = data_item.split('_'),
-            i_type = i_arr[0];
-        
-        switch(i_type) {
-            case 'l':
-                save_new_plugin(i_arr);             //add to input_object
-                break;
-            case 'o':
-                save_plugin_option(i_arr);         //add to options of target object
-                break;
-            case 'x':
-                console.log('got myself an x');
-                break;
-            default:
-                console.log('unexpected input type');            
-        }
-    } 
-
-    function save_new_plugin(params) {
-        var black_list = ['html', 'php', 'css', 'javascript'],      //filter our native languages that don't require compiling
-            target = params[1],                                     //TODO: filter those at earlier stage (e.g. special type in input_raw)
-            name = params[2];
-        if (black_list.indexOf(name) === -1) {
-            input_object[name] = {
-                name: name,
-                target: target,
-                options: []
+    } else if (el_type === 'o') {       //assume target plugin is already added
+        var p_name = el_arr[2],
+            p_target = el_arr[1],
+            p_order = plugins.get(p_name).order,
+            option_obj = {
+                name: el_arr[3],
+                value: el_arr[4]
             };
-        } else {
-//            console.log(name + ' is blacklisted');
-        }
         
+        //save to plugin options array
+        obj.tasks[p_target][p_order].options.push(option_obj);
+
+    } else {
+        console.log('Unknown element type');
     }
 
-    function save_plugin_option(params) {
-        var target = params[1],
-            name = params[2],
-            value = params[3],
-            option_object = {};
-
-        option_object.name = name;
-        option_object.value = value;
-        input_object[target].options.push(option_object);        
-    }
-})();
+    return obj;
+}

@@ -24,11 +24,18 @@ const path = {
            'dev/js/build_gulp/file_structure.js',
            'dev/js/build_gulp/task.js',
            'dev/js/build_gulp/watch.js',
+           'dev/js/build_gulp/build_gulp.js',
            'dev/js/build_npm_install.js',
-           'dev/js/build_gulp.js',
            'dev/js/input_processor.js'],
     js_t: 'pub/js/'
 };
+
+//error handler
+function swallowError(error) {
+    console.log('Err_Plugin: ' + error.plugin);
+    console.log('Err_Msg: ' + error.message);
+    this.emit('end');
+}
 
 //server
 gulp.task('connect', function() {
@@ -57,7 +64,7 @@ gulp.task('sass', function() {
         .pipe(sass({
             outputStyle: 'compressed'
         }))
-        .on('error', sass.logError)
+        .on('error', swallowError)
         .pipe(postcss(post_processors))
         .pipe(maps.write('./'))
         .pipe(gulp.dest(path.css))
@@ -67,11 +74,12 @@ gulp.task('sass', function() {
 //js concat + uglify
 gulp.task('js', function () {
     return gulp.src(path.js_s)
-        .pipe(maps.init())
         .pipe(jshint())
         .pipe(jshint.reporter(stylish))
+        .pipe(maps.init())
         .pipe(concat('scripts.js'))
         .pipe(uglify())
+        .on('error', swallowError)
         .pipe(maps.write('./'))
         .pipe(gulp.dest(path.js_t))
         .pipe(livereload());

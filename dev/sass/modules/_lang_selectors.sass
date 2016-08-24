@@ -1,0 +1,24 @@
+//Selectors for languages
+.lang_list ul
+    margin: 0
+    padding: 1em 0
+    list-style-type: none
+    color: $col_txt_lgt
+    text-align: center
+    display: block
+    //border-bottom: $bdr_base
+    li        
+        display: inline-block
+        margin-top: 0.75em
+        label
+            border: $bdr_base_drk
+            padding: 0.75em
+            border-radius: 0.75em
+            cursor: pointer
+            user-select: none
+        input
+            visibility: hidden
+        input[type="radio"]:checked + label
+            color: $col_accent
+            border: $bdr_base_accent
+            background-color: $col_accent_lgt

@@ -1,0 +1,78 @@
+//Optional plugins
+.extras
+    border-top: $bdr_base
+    padding: 1em 4em
+    h2
+        color: $col_txt_lgt
+        text-transform: uppercase
+        font-weight: 300
+        text-align: center
+.xtras_list ul li
+    list-style-type: none
+    @extend .clearfix
+    
+.plug_switch
+    input[type='checkbox']
+        position: absolute
+        left: -9000px
+    label.main
+        color: $col_txt_lgt
+        font-size: 1.25em
+        cursor: pointer
+        user-select: none
+        line-height: 2em
+        display: block
+        float: left
+        margin-left: 3em
+    .switch_btn
+        border: $bdr_base_drk
+        height: 2em
+        width: 3em
+        border-radius: 0.75em
+        overflow: hidden
+        cursor: pointer
+        float: right
+        margin-right: 3em
+        margin-bottom: 0.5em
+        .pos
+            float: left
+            height: 2em
+            width: 3em
+            text-align: center
+            line-height: 2em
+        .pos.pos_on
+            margin-left: -3em
+            background-color: $col_accent_lgt
+            color: $col_accent
+        .pos.pos_off
+            background-color: $col_bg_drker
+            color: $col_txt_drk
+            
+    input[type="checkbox"]:checked + label
+        color: $col_accent
+        
+    input[type="checkbox"]:checked ~ label.switch_btn
+        border: $bdr_base_accent
+
+    input[type="checkbox"]:checked ~ .switch_btn div.pos_on
+        margin-left: 0
+        
+        
+//xtras options
+.extras ul.opts
+    clear: both
+    padding: 0.75em
+    background-color: $col_bg_drk
+    border: $bdr_base
+    margin-bottom: 0.5em
+    display: none
+    h3
+        text-transform: uppercase
+        color: $col_txt_lgt
+        font-weight: 300
+        margin: 0 0 1em 0
+    li
+        margin-bottom: 0.5em
+    
+input[type="checkbox"]:checked ~ ul.opts
+    display: block 

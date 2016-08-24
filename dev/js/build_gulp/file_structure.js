@@ -1,5 +1,5 @@
 //record file structure
-var bg_file_structure = '//file structure\n' +
+var gf_file_structure = '//file structure\n' +
         'var path = {\n'+
         '\thtml: {\n'+
         '\t\tsrc: \'dev/*.*\',\n'+

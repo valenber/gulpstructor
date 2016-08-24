@@ -1,32 +1,36 @@
 //gulpfile tasks
 
-var bg_task = (function() {
+var gf_tasks = (function() {
     //build individual tasks
-    function create_task(task_obj) {
-        var name = task_obj.name,
-            target = task_obj.target,
-            options = list_options(task_obj.options);
-
-        var task = '//compile ' + target + '\n'+
-            'gulp.task(\'' + name + '\', function() {\n' + 
-            '\treturn gulp.src(path.' + target + '.src)\n' +
-            new_pipe('task', [name, options]) +
-            new_pipe('dest', [target]) +
-            '});\n\n';
-
-        return task;
+    function create_tasks(task_obj) {
+        var tasks_list = '';
+        
+        for (var target in task_obj) {
+            
+            
+            var ind_task = '//process ' + target + '\n' +
+                'gulp.task(\'' + target + '\', function() {\n' +
+                '\treturn gulp.src(path.' + target + '.src)\n';
+            
+            for (var pipe in task_obj[target]) {
+                var pipe_data = task_obj[target][pipe];
+                ind_task += new_pipe(pipe_data);
+            }
+            
+            ind_task += '\t\t.pipe(gulp.dest(path.' + target + '.trg));\n' + '});\n\n';
+            
+            
+            tasks_list += ind_task;
+        }
+        return tasks_list;
     }
     
     //pipes generator
-    function new_pipe(type, data_arr) {
-        if (type === 'dest') {
-            var target = data_arr[0];
-            return '\t\t.pipe(gulp.dest(path.' + target +'.trg))\n';
-        } else {
-            var name = data_arr[0],
-                options = data_arr[1];
-            return '\t\t.pipe(' + name + '(' + options + '))\n';
-        }
+    function new_pipe(data_obj) {        
+        var name = data_obj.name,
+            options = list_options(data_obj.options);
+        
+        return '\t\t.pipe(' + name + '(' + options + '))\n';
     }
     
     //list options
@@ -36,17 +40,17 @@ var bg_task = (function() {
         }
         var option_list = '';
         for (var i in opts_arr) {
-            option_list += '\t\t\t' + opts_arr[i].name + ': \'' + opts_arr[i].value + '\'';
+            option_list += '' + opts_arr[i].name + ': \'' + opts_arr[i].value + '\'';
 
             if (i < opts_arr.length-1) {
-                option_list += ',\n';
+                option_list += ',\n\t\t\t';
             }
         }
-        return '{\n' + option_list + '\n\t\t}';
+        return '\n\t\t\t{' + option_list + '}\n\t\t';
     }
     
     return {
-        create: create_task
+        create: create_tasks
     };
 })();
 

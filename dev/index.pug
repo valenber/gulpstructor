@@ -21,6 +21,10 @@ html(lang="en")
                         .lang_details
                             .descr
                             ul.opts
+                    .extras
+                        h2 Extras:
+                        .xtras_list
+                            ul
                 .section#css
                     .section_title
                         h2 Styles
@@ -31,16 +35,54 @@ html(lang="en")
                         .lang_details
                             .descr
                             ul.opts
+                    .extras
+                        h2 Extras:
+                        .xtras_list
+                            ul
                 .section#js
                     .section_title
                         h2 Scripts
-                    .languages(data-pl_cat='js')
+                    .languages
                         h3.prompt How will you write your scripts?
                         .lang_list
                             ul
                         .lang_details
                             .descr
                             ul.opts
+                    .extras
+                        h2 Extras:
+                        .xtras_list
+                            ul
+                        //.plug
+                            .plug_switch
+                                input(type='checkbox', name='p_jshint', id='p_jshint')
+                                label.main(for='p_jshint') JSHint
+                                label.switch_btn(for='p_jshint')
+                                    .pos.pos_on On
+                                    .pos.pos_off Off
+                        //.plug
+                            .plug_switch
+                                input(type='checkbox', name='p_uglify', id='p_uglify')
+                                label.main(for='p_uglify') Uglify
+                                label.switch_btn(for='p_uglify')
+                                    .pos.pos_on On
+                                    .pos.pos_off Off
+                                ul.xtra_plug_opts
+                                    li
+                                        h4.opt_name mangle
+                                        div
+                                            input(type='radio', name='uglify_mangle', id='o_js_uglify_mangle_true')
+                                            label(for='o_js_uglify_mangle_true') true
+                                        div
+                                            input(type='radio', name='uglify_mangle', id='o_js_uglify_mangle_false')
+                                            label(for='o_js_uglify_mangle_false') false
+                        //.plug
+                            .plug_switch
+                                input(type='checkbox', name='p_concat', id='p_concat')
+                                label.main(for='p_concat') Concat
+                                label.switch_btn(for='p_concat')
+                                    .pos.pos_on On
+                                    .pos.pos_off Off
                 input(type='submit', id='generate_btn', value='Generate')
         footer
         script(src='./js/scripts.js')
