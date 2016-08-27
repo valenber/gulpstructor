@@ -1,4 +1,4 @@
-var dom_hand = (function() { 
+var dom_ctrl = (function() { 
     //Cache library
     var lib = {
         langs: plugins.fetch('type', 0),        //0 - languages
@@ -28,6 +28,7 @@ var dom_hand = (function() {
         },
         xtras_list: {
             html: getme('#html .xtras_list ul'),
+            server: getme('#html .xtras_list ul'),      //same as html
             css: getme('#css .xtras_list ul'),
             js: getme('#js .xtras_list ul')
         }
@@ -45,7 +46,7 @@ var dom_hand = (function() {
         
         //add event listeners
         for (var j in langs) {            
-            var selector_id = '#p_' + langs[j].name;
+            var selector_id = '#' + langs[j].category + '_' +langs[j].name;
             listen_to(selector_id, 'change', display_lang_details);
         }
     }
@@ -58,13 +59,11 @@ var dom_hand = (function() {
         for (var i in xtras) {
             
             var category = xtras[i].category;
-            dom.xtras_list[category].innerHTML += generate.xtras_selector(xtras[i].name);
+            dom.xtras_list[category].innerHTML += generate.xtras_selector(xtras[i]);
         }
-        
-        //add event listeners
     }
   
-    //Events handlers
+    //Events handler
     function display_lang_details(e) {
         var pl_name = e.target.id.split('_')[1],
             plugin = plugins.get(pl_name),
@@ -75,8 +74,8 @@ var dom_hand = (function() {
         //update DOM
         section_descr.innerHTML = generate.descripion(plugin.descr);    //display description
         
-        //display plugin options if there are any, else clear the DOM element containing options        
-        section_opts.innerHTML = generate.options_list(plugin.name);
+        //display plugin options if there are any, else clear respective DOM element
+        section_opts.innerHTML = !empty_obj(plugin.options) ? generate.options_list(plugin) : '';
     }
     
     //Initial render sequence
@@ -86,5 +85,8 @@ var dom_hand = (function() {
     }
 
     //init the app
-    render_dom();    
+    render_dom();
+    
+    //listen to form submit button
+    listen_to('#generate_btn', 'click', input_processor.process);
 })();

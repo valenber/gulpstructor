@@ -14,12 +14,22 @@
     * ~~Change structure of input.input_object to 'target -> plugin -> options'~~
     * ~~Change library plugin object to add order property~~
 * ~~Add extras to DOM~~
-* Handler for plugins with multiple pipes/methods
-* Server/Livereload
+* ~~Handler for plugins with multiple pipes/methods~~
+* ~~SourceMaps for CSS and JS~~
+* ~~Server/Livereload~~
+* ~~Default task~~
 * Gulpfile output
+* Error Handler
+* About page
+* Make responsive
+* Remember to style
+    * Generate button
+    * Text input for Extras
 
-###Later
+
+##Later
 * PostCSS
+* Server only works with gulp-connect, make alternative options possible
 
 ##Bugs
 * ~~Options values are rendered in the reverse order due to CSS styling~~
@@ -27,3 +37,4 @@
 * ~~ERROR if user selected nothing~~
 * ~~Gulp object is not reset~~
 * ~~When an extra plugin is unselected its options stay selected and produce error~~
+* JShint reporter 'stylish' will not work, because it requires special plugin

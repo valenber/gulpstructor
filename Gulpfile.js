@@ -4,11 +4,11 @@ const gulp = require('gulp'),
       sass = require('gulp-sass'),
       concat = require('gulp-concat'),
       uglify = require('gulp-uglify'),
-      livereload = require('gulp-livereload'),
       connect = require('gulp-connect'),
       jshint = require('gulp-jshint'),
       stylish = require('jshint-stylish'),
       postcss = require('gulp-postcss'),
+      lost = require('lost'),
       a_prefix = require('autoprefixer');
 
 const path = {
@@ -17,16 +17,19 @@ const path = {
     sass: 'dev/sass/**/*.sass',
     css: 'pub/css/',
     js_s: ['dev/js/toolkit.js',             //add JS files in desired order
-           'dev/js/plugin_library.js', 
+           'dev/js/plugins.js',
+           'dev/js/output.js',
+           'dev/js/files_generator/gf_require.js',
+           'dev/js/files_generator/gf_server.js',
+           'dev/js/files_generator/gf_file_structure.js',
+           'dev/js/files_generator/gf_tasks.js',
+           'dev/js/files_generator/gf_watch.js',
+           'dev/js/files_generator/gf_default.js',
+           'dev/js/files_generator/build_gf.js',
+           'dev/js/files_generator/build_npm_install.js',
+           'dev/js/input_processor.js',
            'dev/js/dom_generators.js', 
-           'dev/js/dom_handler.js', 
-           'dev/js/build_gulp/require.js',
-           'dev/js/build_gulp/file_structure.js',
-           'dev/js/build_gulp/task.js',
-           'dev/js/build_gulp/watch.js',
-           'dev/js/build_gulp/build_gulp.js',
-           'dev/js/build_npm_install.js',
-           'dev/js/input_processor.js'],
+           'dev/js/dom_ctrl.js'],
     js_t: 'pub/js/'
 };
 
@@ -53,12 +56,12 @@ gulp.task('pug', function() {
             pretty: '\t'
         }))
         .pipe(gulp.dest(path.html))
-        .pipe(livereload());
+        .pipe(connect.reload());
 });
 
 //sass compiler
 gulp.task('sass', function() {
-    var post_processors = [a_prefix({browsers: ['> 1%']})];
+    var post_processors = [lost, a_prefix({browsers: ['> 1%']})];
     return gulp.src(path.sass)
         .pipe(maps.init())
         .pipe(sass({
@@ -68,7 +71,7 @@ gulp.task('sass', function() {
         .pipe(postcss(post_processors))
         .pipe(maps.write('./'))
         .pipe(gulp.dest(path.css))
-        .pipe(livereload());
+        .pipe(connect.reload());
 });
 
 //js concat + uglify
@@ -78,16 +81,17 @@ gulp.task('js', function () {
         .pipe(jshint.reporter(stylish))
         .pipe(maps.init())
         .pipe(concat('scripts.js'))
-        .pipe(uglify())
+        .pipe(uglify({
+            mangle: true
+        }))
         .on('error', swallowError)
         .pipe(maps.write('./'))
         .pipe(gulp.dest(path.js_t))
-        .pipe(livereload());
+        .pipe(connect.reload());
 });
 
 //watch task
 gulp.task('watch', function() {
-    livereload.listen();
     gulp.watch(path.pug, ['pug']);
     gulp.watch(path.sass, ['sass']);
     gulp.watch(path.js_s, ['js']);

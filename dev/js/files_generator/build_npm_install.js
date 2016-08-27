@@ -8,5 +8,5 @@ function npm_install(npm_obj) {
     }
     npm_list = npm_list.slice(0, -1);
     
-    console.log(npm_list);
+    output.set.npm(npm_list);      //save to output variable
 }
