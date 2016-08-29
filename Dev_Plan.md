@@ -29,13 +29,14 @@
 * About page or Hero intro
 * Make responsive
 * Review plugins
+* Publish on Github Pages
 
 ##Remember to style
 * ~~Generate button~~
 * ~~Text input for Extras (e.g. Port)~~
 
 
-##Later
+##Version 2
 * Floating descriptions for
     * Extras
     * Plugin options
