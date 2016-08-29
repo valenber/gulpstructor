@@ -10,6 +10,7 @@ html(lang="en")
             h1(id='title') Gulpstructor
                 span  (v.1.0)
         main
+            
             form(id='gulp_data')
                 .section#html
                     .section_title
@@ -53,36 +54,35 @@ html(lang="en")
                         h2 Extras:
                         .xtras_list
                             ul
-                        //.plug
-                            .plug_switch
-                                input(type='checkbox', name='p_jshint', id='p_jshint')
-                                label.main(for='p_jshint') JSHint
-                                label.switch_btn(for='p_jshint')
-                                    .pos.pos_on On
-                                    .pos.pos_off Off
-                        //.plug
-                            .plug_switch
-                                input(type='checkbox', name='p_uglify', id='p_uglify')
-                                label.main(for='p_uglify') Uglify
-                                label.switch_btn(for='p_uglify')
-                                    .pos.pos_on On
-                                    .pos.pos_off Off
-                                ul.xtra_plug_opts
-                                    li
-                                        h4.opt_name mangle
-                                        div
-                                            input(type='radio', name='uglify_mangle', id='o_js_uglify_mangle_true')
-                                            label(for='o_js_uglify_mangle_true') true
-                                        div
-                                            input(type='radio', name='uglify_mangle', id='o_js_uglify_mangle_false')
-                                            label(for='o_js_uglify_mangle_false') false
-                        //.plug
-                            .plug_switch
-                                input(type='checkbox', name='p_concat', id='p_concat')
-                                label.main(for='p_concat') Concat
-                                label.switch_btn(for='p_concat')
-                                    .pos.pos_on On
-                                    .pos.pos_off Off
-                input(type='submit', id='generate_btn', value='Generate')
+                #generate
+                    p.notification.visible &nbsp
+                    input(type='submit', id='generate_btn', value='Generate', data-target='generate')
+            .output_wrapper
+                #close_modal
+                    p X
+                .output_card
+                    textarea#clipboard
+                    #gulp.section
+                        .section_title
+                            h2 Gulpfile
+                        .section_content
+                            p#gulpfile_instructions Copy and paste the following code to Gulpfile.js in the root of your project. You are welcome to make changes to it before copying, for example by editing the file structure section to match your project's structure.
+                            .section_controls
+                                p.notification.visible &nbsp
+                                a#download_gulpfile(href='blank', download='Gulpfile.js') Download
+                                button.copy_btn#copy_gulpfile(data-target='gulp') Copy
+                            #gulpfile_text
+                    #npm.section
+                        .section_title
+                            h2 NPM install
+                        .section_content
+                            p#npm_instructions Run the following command in the root of the project to install plugins required for your Gulpfile:
+                            .section_controls
+                                p.notification.visible &nbsp
+                                button.copy_btn#copy_npm(data-target='npm') Copy
+                            #npm_text
         footer
+            | Made by 
+            a(href='http://www.valentinberlin.com/', target='_blanc') Valentin Berlin
+            |  in 2016
         script(src='./js/scripts.js')

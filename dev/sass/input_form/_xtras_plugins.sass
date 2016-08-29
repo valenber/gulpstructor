@@ -15,6 +15,14 @@
     input[type='checkbox']
         position: absolute
         left: -9000px
+    input[type='text']
+        border: $bdr_base
+        width: 6em
+        text-align: center
+        margin-top: 1.25em
+    input[type='text']:focus
+        border: $bdr_base_accent
+        outline: 0
     label.main
         color: $col_txt_lgt
         font-size: 1.15em
@@ -53,6 +61,7 @@
         
     input[type="checkbox"]:checked ~ label.switch_btn
         border: $bdr_base_accent
+        //margin-bottom: 1.25em
 
     input[type="checkbox"]:checked ~ .switch_btn div.pos_on
         margin-left: 0

@@ -5,10 +5,28 @@ header
     background-color: $col_bg_lgt
     padding: 0 1.5em
     border: $bdr_base
+    position: relative     //to make z-index work
+    z-index: 900
     h1
         font-weight: 300
         span
             font-size: 60%
 main
     padding: 2em
-    
+
+footer
+    background-color: $col_bg_drker
+    font-size: 130%
+    padding: 1.5em 2em
+    border-top: $bdr_base_drker
+    a
+        text-decoration: none
+        color: $col_accent
+
+@include mq($bp_md)
+    main
+        padding: 2em 10%
+        
+@include mq($bp_lg)
+    main
+        padding: 2em 25%

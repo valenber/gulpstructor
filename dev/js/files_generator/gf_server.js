@@ -10,7 +10,7 @@ function gf_server(server_obj) {
             livereload +
             '\t\tport: ' + server_obj.port + '\n' +
             '\t})\n' + 
-            '});';
+            '});\n\n';
 
         return server_task;
         
@@ -19,23 +19,3 @@ function gf_server(server_obj) {
     }
     
 }
-
-
-
-
-/*
-
-{use: "connect", port: 9000, livereload: "true"}
-
-gulp.task('connect', function() {
-    connect.server({
-        root: path.html,
-        livereload: true,
-        port: 9000
-    })
-});
-
-
-.pipe(connect.reload());
-
-*/

@@ -20,35 +20,32 @@ var input_processor = (function() {
         piping_order = plugins.get_order();
 
         //catch no input
-        //TODO: Create proper error message
         if (raw_input === undefined) {
-            return console.error('GulpStructor Err: No options were selected');     
-        }
+            var parent_id = e.target.dataset.target;
+            output_msg('No options were selected', parent_id); 
+        } else {
 
-        //convert NodeList to Array
-        var raw_input_arr = raw_input.length ? [].slice.call(raw_input) : [raw_input];
+            //convert NodeList to Array
+            var raw_input_arr = raw_input.length ? [].slice.call(raw_input) : [raw_input];
 
-        //create gulpfile object
-        var gulp_tasks = raw_input_arr.reduce(process_element, gulp_tasks_template);
-        
-        
-        
-        //if livereload is on, add livereload pipe to every task
-        if(gulp_tasks.server.livereload == "true") {
-            var reload_obj = {
-                name: 'connect.reload'
-            };
-            for (var task in gulp_tasks.tasks) {
-                gulp_tasks.tasks[task].push(reload_obj);
-                
+            //create gulpfile object
+            var gulp_tasks = raw_input_arr.reduce(process_element, gulp_tasks_template);
+
+            //if livereload is on, add livereload pipe to every task
+            if(gulp_tasks.server.livereload == "true") {
+                var reload_obj = {
+                    name: 'connect.reload'
+                };
+                for (var task in gulp_tasks.tasks) {
+                    gulp_tasks.tasks[task].push(reload_obj);
+                }
             }
-        }
-        
-        //pass it to gulpfile builder
-        build.gulp_file(gulp_tasks);
+            //pass it to gulpfile builder
+            build.gulp_file(gulp_tasks);
 
-        //pass list of plugins to npm installer
-        npm_install(gulp_tasks.require);
+            //pass list of plugins to npm installer which also shows output modal
+            npm_install(gulp_tasks.require);
+        }
     }
     
     //MAIN input processor
@@ -76,7 +73,7 @@ var input_processor = (function() {
                 if (p.methods) {
                     var methods = p.methods;
 
-                    //TODO: add arguments to DOM as options
+                    //TODO: allow user to chose arguments 
                     //place methods and arguments into an object
                     var plugin_methods_arr = methods.map(function(el) {
                         var el_arr = el.split('_'),
@@ -91,7 +88,7 @@ var input_processor = (function() {
                     
                     //catch more than two methods
                     if (plugin_methods_arr.length > 2) {
-                        console.error ('Gulpstructor Err: Currently can ONLY handle TWO METHODS per plugin');
+                        console.error ('Gulpstructor: Currently can ONLY handle TWO METHODS per plugin');
                     }
                     
                     //if target is not defined set it to array

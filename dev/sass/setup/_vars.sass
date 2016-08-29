@@ -1,0 +1,40 @@
+//Colours 
+$col_black: #000
+$col_white: #fff
+$col_grey: lighten($col_black, 85%) 
+
+$col_accent: #FF5E00
+$col_accent_lgt: lighten($col_accent, 48%)
+$col_comp: complement($col_accent)
+$col_comp_lgt: lighten($col_comp, 45%)
+
+//Backgrounds
+
+$col_bg_lgt: $col_white
+$col_bg_drk: #FAFAFA
+$col_bg_drk: darken($col_white, 2.5%)
+$col_bg_drker: darken($col_bg_drk, 4%)
+$col_bg_opaque: rgba($col_bg_drk, .95)
+
+//Text
+$col_txt_drk: lighten($col_black, 13%)
+$col_txt_lgt: lighten($col_black, 45%)
+
+//Borders
+$bdr_base: solid 1px $col_grey
+$bdr_base_drk: solid 1px darken($col_grey, 30%)
+$bdr_base_accent: solid 1px $col_accent
+$bdr_base_lgt: solid 1px $col_white
+$bdr_base_comp: solid 1px $col_comp
+$bdr_base_drker: solid 1px lighten($col_black, 80%) 
+
+//Break points
+
+@mixin mq($breakpoint)
+    @media (min-width: $breakpoint) 
+        @content
+        
+$bp_sm: 320px
+$bp_md: 640px
+$bp_lg: 1024px
+$bp_xl: 1400px

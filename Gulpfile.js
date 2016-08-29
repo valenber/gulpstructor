@@ -17,6 +17,7 @@ const path = {
     sass: 'dev/sass/**/*.sass',
     css: 'pub/css/',
     js_s: ['dev/js/toolkit.js',             //add JS files in desired order
+           'dev/js/user_msgs.js',
            'dev/js/plugins.js',
            'dev/js/output.js',
            'dev/js/files_generator/gf_require.js',

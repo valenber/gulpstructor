@@ -1,5 +1,6 @@
 #Development Plan
 
+##Before release
 * ~~Show/hide language details~~
 * ~~Style the options lists~~
 * ~~Basic Gulpfile generator~~
@@ -19,17 +20,27 @@
 * ~~Server/Livereload~~
 * ~~Default task~~
 * Gulpfile output
-* Error Handler
-* About page
+    * ~~Edit~~
+    * ~~Copy to Clipboard~~
+    * ~~Download Gulpfile~~
+    * Download project
+* ~~Error Handler~~
+* ~~Footer~~
+* About page or Hero intro
 * Make responsive
-* Remember to style
-    * Generate button
-    * Text input for Extras
+* Review plugins
+
+##Remember to style
+* ~~Generate button~~
+* ~~Text input for Extras (e.g. Port)~~
 
 
 ##Later
-* PostCSS
-* Server only works with gulp-connect, make alternative options possible
+* Floating descriptions for
+    * Extras
+    * Plugin options
+* Add PostCSS functionality
+* Server only works with gulp-connect, make alternative options possible (Vagrant?)
 
 ##Bugs
 * ~~Options values are rendered in the reverse order due to CSS styling~~

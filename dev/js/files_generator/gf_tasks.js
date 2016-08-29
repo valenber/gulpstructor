@@ -12,7 +12,7 @@ var gf_tasks = (function() {
                 'gulp.task(\'' + target + '\', function() {\n' +
                 '\treturn gulp.src(path.' + target + '.src)',
                 livereload = '',
-                tasks_end = ';\n' + '});\n\n';
+                tasks_end = ';\n' + '});';
             
             //if livereload add pipe to the end
             var task_list = task_obj[target];
