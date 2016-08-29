@@ -43,7 +43,8 @@ var input_processor = (function() {
             //pass it to gulpfile builder
             build.gulp_file(gulp_tasks);
 
-            //pass list of plugins to npm installer which also shows output modal
+            //pass list of plugins to npm installer 
+            //which also makes output modal visible
             npm_install(gulp_tasks.require);
         }
     }

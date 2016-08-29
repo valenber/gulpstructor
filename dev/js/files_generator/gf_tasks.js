@@ -38,7 +38,7 @@ var gf_tasks = (function() {
     //pipes generator
     function new_pipe(data_obj) {        
         if (data_obj.argument) {
-            return '\n\t\t.pipe(' + data_obj.name + '(' + data_obj.argument + '))';
+            return '\n\t\t.pipe(' + data_obj.name + '(\'' + data_obj.argument + '\'))';
         } else {
             var options = list_options(data_obj.options);            
             return '\n\t\t.pipe(' + data_obj.name + '(' + options + '))';

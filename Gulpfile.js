@@ -19,7 +19,6 @@ const path = {
     js_s: ['dev/js/toolkit.js',             //add JS files in desired order
            'dev/js/user_msgs.js',
            'dev/js/plugins.js',
-           'dev/js/output.js',
            'dev/js/files_generator/gf_require.js',
            'dev/js/files_generator/gf_server.js',
            'dev/js/files_generator/gf_file_structure.js',
@@ -30,7 +29,11 @@ const path = {
            'dev/js/files_generator/build_npm_install.js',
            'dev/js/input_processor.js',
            'dev/js/dom_generators.js', 
-           'dev/js/dom_ctrl.js'],
+           'dev/js/dom_ctrl.js',
+           'dev/js/lib/jszip.js',
+           'dev/js/lib/filesaver.js',
+           'dev/js/output.js',
+          ],
     js_t: 'pub/js/'
 };
 

@@ -88,16 +88,13 @@ var output = (function() {
         proj.folder('pub').folder('img');
         proj.file('Gulpfile.js', file_data);
         
-        proj.generateAsync({type:"blob"})
+        proj.generateAsync({type:"blob"}) 
             .then(function (blob) {
             saveAs(blob, "project_folder.zip");
         });
         
     }
-/*
-
-
-*/
+    
     return {
         get: {
             gulp: get_gulpfile,
