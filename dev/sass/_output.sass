@@ -7,6 +7,7 @@
     background-color: $col_bg_opaque
     z-index: 500
     display: none
+    overflow: auto
     
 .output_wrapper.visible
     display: block
@@ -29,6 +30,8 @@
 
 .output_card
     padding: 4em 25% 2em
+    .section
+        margin-bottom: 2em
 
 .section_content
     padding: 1em 2em
@@ -38,15 +41,22 @@
     padding: 0 2em
     button, a
         text-decoration: none
-        border: $bdr_base_accent
-        color: $col_accent
-        background-color: $col_accent_lgt
+        border: $bdr_base_comp
+        color: $col_comp
+        background-color: $col_comp_lgt
         border-radius: 0.5em
         padding: 0.5em 1em
         margin: 0.5em
         text-transform: uppercase
         cursor: pointer
         outline: 0
+
+#save_proj_btn_wrapper
+    text-align: center
+    
+#save_proj
+    @extend #generate_btn
+    padding: 0.5em 1.25em
     
 #gulpfile_text
     height: 26em

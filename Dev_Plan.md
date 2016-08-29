@@ -23,7 +23,7 @@
     * ~~Edit~~
     * ~~Copy to Clipboard~~
     * ~~Download Gulpfile~~
-    * Download project
+    * ~~Download project~~
 * ~~Error Handler~~
 * ~~Footer~~
 * About page or Hero intro
@@ -48,4 +48,4 @@
 * ~~ERROR if user selected nothing~~
 * ~~Gulp object is not reset~~
 * ~~When an extra plugin is unselected its options stay selected and produce error~~
-* JShint reporter 'stylish' will not work, because it requires special plugin
+* Downloaded Gulpfile.JS give Windows error on double-click

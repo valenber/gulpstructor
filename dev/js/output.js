@@ -60,19 +60,44 @@ var output = (function() {
             output_msg('Saved to your clipboard!', target);
         } else {
             output_msg('Error: ' + target + '_output contains no text', target);
-            //console.error('Gulpstructor: ' + target + '_output contains no text');
         }
     }
     
-    //download button functionality
+    //download gulpfile functionality
     listen_to('#download_gulpfile', 'click', download_file);
 
     function download_file() {
         var output_element = getme('#gulpfile_text code pre'),
             file_data = output_element.innerHTML;
-        this.href = 'data:attachment/javascript,' + encodeURI(file_data);
+        this.href = 'data:attachment/text,' + encodeURI(file_data);
     }
     
+    //download project functionality
+    listen_to('#save_proj', 'click', download_project);
+    
+    function download_project() {
+        var trigger = getme('#save_proj'),
+            output_element = getme('#gulpfile_text code pre'),
+            file_data = output_element.innerHTML;
+        
+        var proj = new JSZip();
+        proj.folder('dev').folder('js');
+        proj.folder('dev').folder('css');
+        proj.folder('pub').folder('js');
+        proj.folder('pub').folder('css');
+        proj.folder('pub').folder('img');
+        proj.file('Gulpfile.js', file_data);
+        
+        proj.generateAsync({type:"blob"})
+            .then(function (blob) {
+            saveAs(blob, "project_folder.zip");
+        });
+        
+    }
+/*
+
+
+*/
     return {
         get: {
             gulp: get_gulpfile,

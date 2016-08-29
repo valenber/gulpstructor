@@ -55,34 +55,43 @@ html(lang="en")
                         .xtras_list
                             ul
                 #generate
-                    p.notification.visible &nbsp
+                    p.notification.visible &nbsp;
                     input(type='submit', id='generate_btn', value='Generate', data-target='generate')
             .output_wrapper
                 #close_modal
                     p X
                 .output_card
                     textarea#clipboard
+                    #download_project_wrapper.section
+                        .section_title
+                            h2 Save project
+                        .section_content
+                            p#download_instructions If you do not wish to make any changes to the project structure, here you can download zipped folder with the entire project and corresponding Gulpfile.
+                            #save_proj_btn_wrapper
+                                button#save_proj Download
                     #gulp.section
                         .section_title
                             h2 Gulpfile
                         .section_content
-                            p#gulpfile_instructions Copy and paste the following code to Gulpfile.js in the root of your project. You are welcome to make changes to it before copying, for example by editing the file structure section to match your project's structure.
+                            p#gulpfile_instructions Save or Copy/Paste the following code to Gulpfile.js in the root of your project. You are welcome to make changes to it before copying, for example by editing the file structure section to match your project's structure.
                             .section_controls
-                                p.notification.visible &nbsp
-                                a#download_gulpfile(href='blank', download='Gulpfile.js') Download
+                                p.notification.visible &nbsp;
+                                a#download_gulpfile(href='blank', download='Gulpfile.js') Save
                                 button.copy_btn#copy_gulpfile(data-target='gulp') Copy
                             #gulpfile_text
                     #npm.section
                         .section_title
                             h2 NPM install
                         .section_content
-                            p#npm_instructions Run the following command in the root of the project to install plugins required for your Gulpfile:
+                            p#npm_instructions After creating package.json, run the following commands in the root of the project to install plugins required for your Gulpfile.
                             .section_controls
-                                p.notification.visible &nbsp
+                                p.notification.visible &nbsp;
                                 button.copy_btn#copy_npm(data-target='npm') Copy
                             #npm_text
         footer
             | Made by 
             a(href='http://www.valentinberlin.com/', target='_blanc') Valentin Berlin
             |  in 2016
+        script(src='./js/jszip.min.js')
+        script(src='./js/filesaver.min.js')
         script(src='./js/scripts.js')
