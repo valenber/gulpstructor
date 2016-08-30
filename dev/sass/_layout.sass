@@ -3,46 +3,45 @@ body
     
 header
     background-color: $col_bg_lgt
-    padding: 0 1.5em
+    padding: 0.5em
     border: $bdr_base
     position: relative     //to make z-index work
     z-index: 900
     lost-utility: clearfix
     .logo
-        lost-column: 4/5
+        text-align: center
         h1
             font-weight: 300
+            margin-top: 0
             span
                 font-size: 60%
     .repo_link
-        padding-top: 1em
-        lost-column: 1/5
         text-align: center
         a
             text-decoration: none
             text-align: center
+            color: $col_txt_lgt
             span
+                @extend .animate_overline
                 text-transform: uppercase
                 display: block
                 width: 100%
-        
-    
+        a:visited
+            color: $col_txt_lgt
+
 main
     padding: 2em
 
 footer
     background-color: $col_bg_drker
     font-size: 130%
-    padding: 1.5em 2em
+    padding: 1.5em 0
     border-top: $bdr_base_drker
+    position: fixed
+    bottom: 0
+    width: 100%
+    text-align: center
     a
+        @extend .animate_underline
         text-decoration: none
         color: $col_accent
-
-@include mq($bp_md)
-    main
-        padding: 2em 10%
-        
-@include mq($bp_lg)
-    main
-        padding: 2em 25%

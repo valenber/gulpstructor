@@ -1,0 +1,44 @@
+//Actions feedback
+p.notification
+    float: left
+    color: $col_white
+    transition: color 1500ms cubic-bezier(0.6, -0.28, 0.74, 0.05)
+
+p.notification.visible
+    color: $col_accent
+
+//About the app card
+.about_wrapper
+    padding: 2em 4em
+.about
+    border: $bdr_base_accent
+    background-color: $col_accent_lgt
+    border-radius: 0.75em
+    padding: 2em
+    background-color: $col_bg_lgt
+    text-align: center
+    h1, h2
+        font-weight: 200
+    h2
+        border-top: $bdr_base
+        padding-top: 1em
+        margin: 0 6em
+    p#no_about
+        text-transform: uppercase
+        color: $col_accent
+        margin-bottom: -1.5em
+        margin-right: -1.25em
+        text-align: right
+        cursor: pointer
+
+//Small screens notification
+.small_device_note_wrap
+    padding: 1em
+    margin-top: 6vh
+    .small_device_note
+        @extend .section
+        padding: 13.25vh 4em
+        text-align: center
+        h1
+            color: $col_accent
+            font-weight: 300

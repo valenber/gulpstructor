@@ -1,0 +1,23 @@
+.animate_underline
+    position: relative
+    &:before
+        content: ""
+        position: absolute
+        width: 105%
+        height: 1px
+        bottom: 0
+        left: -2.5%
+        background-color: $col_accent
+        visibility: hidden
+        transform: scaleX(0)
+        transition: all 300ms ease-in
+    &:hover::before
+        visibility: visible
+        transform: scale(1)
+
+.animate_overline
+    @extend .animate_underline
+    &:before
+        width: 40%
+        top: -2px
+        left: 30%

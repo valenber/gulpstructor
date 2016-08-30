@@ -1,0 +1,59 @@
+//Break points
+$bp_min: 1024px
+$bp_med: 1280px
+$bp_big: 1400px
+
+//Media query mixin
+@mixin mq($breakpoint)
+    @media (min-width: $breakpoint) 
+        @content
+
+//Hide all
+.about_wrapper,
+#gulp_data
+    display: none
+    
+//Media rules
+@include mq($bp_min)
+    .small_device_note_wrap
+        display: none
+        
+    .about_wrapper,
+    #gulp_data
+        display: block
+        
+    header
+        padding: 1em 2em
+        .logo
+            lost-column: 4/5
+            text-align: left
+            h1 
+                margin: 0.5em 0
+        .repo_link
+            margin-top: 0.5em
+            lost-column: 1/5
+
+    .about_wrapper
+        padding: 2em 10%
+    main
+        padding: 2em 20%
+        
+    footer
+        text-align: left
+        padding: 1.5em 2em
+        
+@include mq($bp_big)
+    header
+        padding: 0 20%
+        
+    .about_wrapper
+        padding: 2em 20%
+        
+    main
+        padding: 2em 25%
+    
+    .extras ul.opts
+        padding: 1.75em
+        
+    .output_card
+        padding: 2em 25% 2em

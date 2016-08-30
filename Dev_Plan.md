@@ -27,15 +27,16 @@
 * ~~Error Handler~~
 * ~~Footer~~
 * ~~About block~~
-* Make responsive
+* ~~Make responsive~~
 * Review/test plugins
 * Publish
 
 ##Remember to style
 * ~~Generate button~~
 * ~~Text input for Extras (e.g. Port)~~
+* ~~Link to repo:visited~~s
 
-##Version 2
+##Later
 * Floating descriptions for
     * Extras
     * Plugin options

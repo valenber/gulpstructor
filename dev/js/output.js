@@ -1,5 +1,5 @@
 var output = (function() {
-    var modal = getme('.output_wrapper'),
+    var modal = getme('#output_wrapper'),
         gulpfile,
         npm_command;
     

@@ -13,14 +13,17 @@ html(lang="en")
             .repo_link
                 a(href="https://github.com/valenber/gulpstructor" target="_blank")
                     img(src="img/GitHub-Mark-32px.png")
-                    span Repository
+                    span See Repository
+        .small_device_note_wrap
+            .small_device_note
+                h1 Since this app is a development tool, it is intended to be used on devices wider than 1024px i.e. laptop or desktop computers.
         .about_wrapper
             .about
                 h1 
-                    | Use Gulpstructor to quickly setup gulpfile for 
+                    | Use Gulpstructor to quickly set up 'Gulp'  for 
                     br 
                     | your next development project
-                h2 Select required plugins/options and run generate
+                h2 Select required plugins/options and run Generate button
                 p#no_about Don't show again
         main
             form(id='gulp_data')
@@ -69,9 +72,10 @@ html(lang="en")
                 #generate
                     p.notification.visible &nbsp;
                     input(type='submit', id='generate_btn', value='Generate', data-target='generate')
-            .output_wrapper
+            #output_wrapper
                 #close_modal
                     p X
+                    span Close
                 .output_card
                     textarea#clipboard
                     #download_project_wrapper.section

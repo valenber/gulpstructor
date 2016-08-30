@@ -28,13 +28,3 @@ $bdr_base_lgt: solid 1px $col_white
 $bdr_base_comp: solid 1px $col_comp
 $bdr_base_drker: solid 1px lighten($col_black, 80%) 
 
-//Break points
-
-@mixin mq($breakpoint)
-    @media (min-width: $breakpoint) 
-        @content
-        
-$bp_sm: 320px
-$bp_md: 640px
-$bp_lg: 1024px
-$bp_xl: 1400px
