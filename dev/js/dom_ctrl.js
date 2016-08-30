@@ -89,4 +89,5 @@ var dom_ctrl = (function() {
     
     //listen to form submit button
     listen_to('#generate_btn', 'click', input_processor.process);
+    
 })();

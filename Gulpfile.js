@@ -30,6 +30,7 @@ const path = {
            'dev/js/input_processor.js',
            'dev/js/dom_generators.js', 
            'dev/js/dom_ctrl.js',
+           'dev/js/about.js',
            'dev/js/lib/jszip.js',
            'dev/js/lib/filesaver.js',
            'dev/js/output.js',

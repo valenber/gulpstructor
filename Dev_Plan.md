@@ -19,22 +19,21 @@
 * ~~SourceMaps for CSS and JS~~
 * ~~Server/Livereload~~
 * ~~Default task~~
-* Gulpfile output
+* ~~Gulpfile output~~
     * ~~Edit~~
     * ~~Copy to Clipboard~~
     * ~~Download Gulpfile~~
     * ~~Download project~~
 * ~~Error Handler~~
 * ~~Footer~~
-* About page or Hero intro
+* ~~About block~~
 * Make responsive
-* Review plugins
-* Publish on Github Pages
+* Review/test plugins
+* Publish
 
 ##Remember to style
 * ~~Generate button~~
 * ~~Text input for Extras (e.g. Port)~~
-
 
 ##Version 2
 * Floating descriptions for
@@ -49,4 +48,4 @@
 * ~~ERROR if user selected nothing~~
 * ~~Gulp object is not reset~~
 * ~~When an extra plugin is unselected its options stay selected and produce error~~
-* Downloaded Gulpfile.JS give Windows error on double-click
+* ~~Downloaded Gulpfile.js produces error in Windows 10 on double-click~~

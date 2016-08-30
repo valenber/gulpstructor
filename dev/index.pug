@@ -7,10 +7,22 @@ html(lang="en")
         link(rel='stylesheet', href='./css/styles.css')
     body
         header
-            h1(id='title') Gulpstructor
-                span  (v.1.0)
+            .logo
+                h1(id='title') Gulpstructor
+                    span  (v1.0)
+            .repo_link
+                a(href="https://github.com/valenber/gulpstructor" target="_blank")
+                    img(src="img/GitHub-Mark-32px.png")
+                    span Repository
+        .about_wrapper
+            .about
+                h1 
+                    | Use Gulpstructor to quickly setup gulpfile for 
+                    br 
+                    | your next development project
+                h2 Select required plugins/options and run generate
+                p#no_about Don't show again
         main
-            
             form(id='gulp_data')
                 .section#html
                     .section_title
