@@ -28,19 +28,24 @@
 * ~~Footer~~
 * ~~About block~~
 * ~~Make responsive~~
-* Review/test plugins
+* ~~Review/test plugins~~
+    * ~~add target filename for concat~~
+    * ~~install dependencies listed for a plugin (e.g. jshint for gulp-jshint)~~
+    * ~~add full lang descriptions~~
+    * ~~add concatenation order array to the generated Gulpfile~~
 * Publish
 
 ##Remember to style
 * ~~Generate button~~
 * ~~Text input for Extras (e.g. Port)~~
-* ~~Link to repo:visited~~s
+* ~~Link to repo:visited~~
 
 ##Later
 * Floating descriptions for
     * Extras
     * Plugin options
-* Add PostCSS functionality
+* Hide extras that are irrelevant for selected languages (pug has option with cssnano functionality)
+* Build gulpfile structure and zipped project structure off the same model
 * Server only works with gulp-connect, make alternative options possible (Vagrant?)
 
 ##Bugs

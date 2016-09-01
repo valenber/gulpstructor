@@ -69,6 +69,16 @@ var input_processor = (function() {
                     //save to require list
                     obj.require.push(name);
                 }
+                
+                //if plugin has listed dependencies
+                if (p.dependencies !== null) {
+                    for (var i in p.dependencies) {
+                        var dep_name = 'dep_' + p.dependencies[i];
+                        if (obj.require.indexOf(dep_name) === -1) {
+                            obj.require.unshift(dep_name);
+                        }
+                    }
+                }
 
                 //if plugin has specified methods (e.g. SourceMaps.init)
                 if (p.methods) {
@@ -98,16 +108,18 @@ var input_processor = (function() {
                     //save first method to the gulp_object
                     obj.tasks[target][order] = plugin_methods_arr[0];
 
-                    //process second method
-                    var method_obj = plugin_methods_arr[1];
-                    if (piping_order.indexOf(method_obj.name) > 0) {
-                        //save to new slot
-                        order = piping_order.indexOf(method_obj.name);
-                        obj.tasks[target][order] = method_obj;
-                    } else {
-                        //splice another slot into piping order
-                        piping_order.splice(order + 1, 0, 'slot');
-                        obj.tasks[target][order + 1] = method_obj;
+                    //process second method if there is one
+                    if (plugin_methods_arr.length > 1) {
+                        var method_obj = plugin_methods_arr[1];
+                        if (piping_order.indexOf(method_obj.name) > 0) {
+                            //save to new slot
+                            order = piping_order.indexOf(method_obj.name);
+                            obj.tasks[target][order] = method_obj;
+                        } else {
+                            //splice another slot into piping order
+                            piping_order.splice(order + 1, 0, 'slot');
+                            obj.tasks[target][order + 1] = method_obj;
+                        }
                     }
                 } else {
                     //save to tasks

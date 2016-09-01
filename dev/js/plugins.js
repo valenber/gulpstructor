@@ -15,7 +15,7 @@ var plugins = (function() {
         ];
     
     var plugin_Class = {
-        create: function(type, category, title, descr, options, order, methods, name) {
+        create: function(type, category, title, descr, options, order, methods, dependencies, name) {
             var instance = Object.create(this),
                 cat_options = ['html', 'css', 'js', 'server'];
             
@@ -26,7 +26,8 @@ var plugins = (function() {
             instance.options = options;
             instance.order = order;
             instance.methods = methods || null;
-            instance.name = name || title.toLowerCase();    //only used for Pug/Jade
+            instance.dependencies = dependencies || null;
+            instance.name = name || title.toLowerCase();
             return instance;
         }
     };
@@ -72,16 +73,15 @@ var plugins = (function() {
 //      Category: 0 - structure, 1 - style, 2 - script
 
 //STRUCTURE plugins
-plugins.add(0, 0, 'HTML', 'A markup language used for structuring web-content.', {}, 'base');
-plugins.add(0, 0, 'Pug/Jade', 'Pug is a high performance template engine heavily influenced by Haml and implemented with JavaScript for Node.js and browsers.',
+plugins.add(0, 0, 'HTML', 'A markup language used for structuring web-content. Alongside CSS and JavaScript, it is one of the three core technologies of web-content production.', {}, 'base');
+plugins.add(0, 0, 'Pug/Jade', 'A high performance template engine heavily influenced by Haml and implemented with JavaScript for Node.js and browsers. Formerly know as Jade',
             { pretty: ['true', 'false', '\\t']},
             'compiler',
-            null,
-            'pug');
+            null, null, 'pug');
 plugins.add(1, 3, 'WebServer', 'Creates a local server allowing you to preview the app or site you are building.', 
             {Port: '9000',
              LiveReload: ['true', 'false']},
-            'server', ['server', 'reload'], 'connect');
+            'server', ['server', 'reload'], null, 'connect');
 
 //STYLE plugins
 plugins.add(0, 1, 'CSS', 'The language used to define styles for your web pages, including the design, layout and variations in display for different devices and screen sizes.', {}, 'base');
@@ -91,15 +91,15 @@ plugins.add(0, 1, 'Sass', 'An extension of CSS that adds power and elegance to t
             'compiler'
             );
 plugins.add(1, 1, 'CSSnano', 'CSSnano description.', {}, 'optimizer');
-plugins.add(1, 1, 'SourceMaps', 'Creates references to original style files, that make it easier to debug the resulting CSS.', {}, 'sourcemaps.init', ['init', 'write_"./"'], 'sourcemaps');
+plugins.add(1, 1, 'SourceMaps', 'Creates references to original style files, that make it easier to debug the resulting CSS.', {}, 'sourcemaps.init', ['init', 'write_./'], null, 'sourcemaps');
 
 //SCRIPT plugins
-plugins.add(0, 2, 'JavaScript', 'JavaScript Description.', {}, 'base');
-plugins.add(0, 2, 'CoffeScript', 'CoffeScript Description.', {}, 'compiler');
+plugins.add(0, 2, 'JavaScript', 'A high-level, dynamic, untyped, and interpreted programming language. Alongside HTML and CSS, it is one of the three core web-development technologies.', {}, 'base');
+plugins.add(0, 2, 'CoffeScript', 'A language that compiles into JavaScript. Underneath that awkward Java-esque patina, JavaScript has always had a gorgeous heart. CoffeeScript is an attempt to expose the good parts of JavaScript in a simple way.', {}, 'compiler');
 plugins.add(0, 2, 'TypeScript', 'A strict superset of JavaScript that adds optional static typing and class-based object-oriented programming to the language.', {}, 'compiler');
-plugins.add(1, 2, 'Concat', 'Concat Description.', {}, 'bundler');
-plugins.add(1, 2, 'JShint', 'Catches errors and makes suggestion on improving your JavaScript code.', {}, 'linter', ['', 'reporter_default']);
+plugins.add(1, 2, 'Concat', 'Concat Description.', {}, 'bundler', ['_scripts.js']);
+plugins.add(1, 2, 'JShint', 'Catches errors and makes suggestion on improving your JavaScript code.', {}, 'linter', ['', 'reporter_default'], ['jshint']);
 plugins.add(1, 2, 'Uglify', 'Makes your JS code more compact to improve site performance.', 
             {mangle: ['true', 'false']},
             'optimizer');
-plugins.add(1, 2, 'SourceMaps', 'Creates references to original script files, that make it easier to debug the resulting JavaScript.', {}, 'sourcemaps.init', ['init', 'write_"./"'], 'sourcemaps');
+plugins.add(1, 2, 'SourceMaps', 'Creates references to original script files, that make it easier to debug the resulting JavaScript.', {}, 'sourcemaps.init', ['init', 'write_./'], null, 'sourcemaps');

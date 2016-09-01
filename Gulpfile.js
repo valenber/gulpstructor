@@ -33,7 +33,7 @@ const path = {
            'dev/js/about.js',
            'dev/js/lib/jszip.js',
            'dev/js/lib/filesaver.js',
-           'dev/js/output.js',
+           'dev/js/output.js'
           ],
     js_t: 'pub/js/'
 };

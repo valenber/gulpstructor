@@ -8,7 +8,7 @@ var gf_tasks = (function() {
         for (var target in task_obj) {
             
             
-            var ind_task = '//process ' + target + '\n' +
+            var ind_task = '\n//process ' + target + '\n' +
                 'gulp.task(\'' + target + '\', function() {\n' +
                 '\treturn gulp.src(path.' + target + '.src)',
                 livereload = '',
@@ -42,20 +42,27 @@ var gf_tasks = (function() {
         } else {
             var options = list_options(data_obj.options);            
             return '\n\t\t.pipe(' + data_obj.name + '(' + options + '))';
-        }
-        
-        
+        }   
     }
     
     //list options
     function list_options(opts_arr) {
+        
+        function opt_value_maker(value) {
+            if (value === 'true' || value === 'false') {
+                return ': ' + value;
+            } else {
+                return ': \'' + value + '\'';
+            }
+        }
         
         if (opts_arr === undefined || opts_arr.length === 0) {
             return '';
         }
         var option_list = '';
         for (var i in opts_arr) {
-            option_list += '' + opts_arr[i].name + ': \'' + opts_arr[i].value + '\'';
+            //option_list += '' + opts_arr[i].name + ': \'' + opts_arr[i].value + '\'';
+            option_list += '' + opts_arr[i].name + opt_value_maker(opts_arr[i].value);
 
             if (i < opts_arr.length-1) {
                 option_list += ',\n\t\t\t';

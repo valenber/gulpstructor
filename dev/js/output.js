@@ -81,8 +81,8 @@ var output = (function() {
             file_data = output_element.innerHTML;
         
         var proj = new JSZip();
-        proj.folder('dev').folder('js');
-        proj.folder('dev').folder('css');
+        proj.folder('dev').folder('scripts');
+        proj.folder('dev').folder('styles');
         proj.folder('pub').folder('js');
         proj.folder('pub').folder('css');
         proj.folder('pub').folder('img');
