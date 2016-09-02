@@ -63,7 +63,7 @@ var output = (function() {
         }
     }
     
-    //download gulpfile functionality
+    //downloading gulpfile
     listen_to('#download_gulpfile', 'click', download_file);
 
     function download_file() {
@@ -72,27 +72,36 @@ var output = (function() {
         this.href = 'data:attachment/text,' + encodeURI(file_data);
     }
     
-    //download project functionality
+    //downloading project
     listen_to('#save_proj', 'click', download_project);
     
     function download_project() {
         var trigger = getme('#save_proj'),
             output_element = getme('#gulpfile_text code pre'),
             file_data = output_element.innerHTML;
+
+        //create JSZip object from file structure object
+        var proj = populate_JSZIP(fs_folders);
         
-        var proj = new JSZip();
-        proj.folder('dev').folder('scripts');
-        proj.folder('dev').folder('styles');
-        proj.folder('pub').folder('js');
-        proj.folder('pub').folder('css');
-        proj.folder('pub').folder('img');
-        proj.file('Gulpfile.js', file_data);
+        function populate_JSZIP(fs_obj) {
+            var new_zip = new JSZip(),
+                fs = fs_obj;
+            for (var i in fs) {
+                for (var j in fs[i])
+                    if (j !== 'root') {
+                        new_zip.folder(fs[i].root).folder(fs[i][j]);
+                    }                    
+            }
+            new_zip.file('Gulpfile.js', file_data);
+            
+            return new_zip;
+        }
         
+        //download zip-file
         proj.generateAsync({type:"blob"}) 
             .then(function (blob) {
             saveAs(blob, "project_folder.zip");
         });
-        
     }
     
     return {

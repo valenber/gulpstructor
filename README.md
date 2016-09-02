@@ -17,7 +17,10 @@ See [Dev_Plan.md](https://github.com/valenber/gulpstructor/blob/master/Dev_Plan.
 ### Future
 * Add a few useful plugins
 * PostCSS
-* Allowing user to save new plugins in Local Storage
+* Allow users to save new plugins in Local Storage
+
+### Contributing
+I didn't have time to test the app extensively yet, so any reports of issues are greatly appreciated as well as requests for new plugins and features.
 
 ### Thanks to
 * [Stuart Knightley](https://github.com/Stuk) for JSZip   

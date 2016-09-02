@@ -1,81 +1,77 @@
 //record file structure
 function gf_file_structure(require_obj) {
-    //if js concat is used
     var concat_arr = '',
-        js_src_setter = '';
+        js_src_setter = '',
+        fs_template = {     //file structure in gulpfile is based on this object
+            path: {
+                html: {
+                    src: fs_folders.src.root,
+                    trg: fs_folders.trg.root
+                },
+                css: {
+                    src: fs_folders.src.css,
+                    trg: fs_folders.trg.css
+                },
+                js: {
+                    src: fs_folders.src.js,
+                    trg: fs_folders.trg.js
+                }
+            }
+        };
     
+    //if js concat is used
     if (require_obj.indexOf('concat') !== -1) {
-        concat_arr = 'var concat_order = [\n' +
-                                    '//populate this array with paths to your JavaScript files in desired order of concatenation\n' +
-                                    '];\n';
-        js_src_setter = '\n//set JavaScript source path to concat_order array if it\'s not empty\n' + 
-                        'path.js.src = concat_order.length !== 0 ? concat_order : \'dev/scripts/*.*\';';
+        concat_arr = 'var concat_list = [' +
+                    '\n//populate this array with names of your JavaScript files' + 
+                    '\n//in desired order of concatenation' +
+                    '\n];\n';
+        js_src_setter = '\n//set JavaScript source path to concat_order array' + 
+                        '\n//if it\'s not empty' +
+                        '\nvar concat_order = concat_list.map(function(el) {' +
+                            '\n\t//if file extention was ommited' +
+                            '\n\tvar ext = el.split(\'.\').length > 1 ? \'\' : \'.js\';' + 
+                            '\n\treturn (path.js.src).slice(0, -3) + el + ext;' +
+                        '\n});' +
+                        '\nif (concat_list.length !== 0) path.js.src = concat_order;';
+    }
+
+    //generates file structure for gulpfile
+    function fs_builder(fs_obj) {       
+        var fs = fs_obj.path,
+            structure = 'var path = {\n';
+        for (var i in fs) {
+            structure += '\t' + i + ': {\n';
+            for (var j in fs[i]) {
+                var end = j === 'src' ? '*.*\',' : '\'',
+                    parent = i !== 'html' ? fs.html[j] + '/' : '';
+                structure += '\t\t' + j + ': \'' + parent + fs[i][j] + '/'+ end + '\n';
+            }
+            structure += '\t},\n';
+        }
+        structure = structure.slice(0, -2);  //remove unnecessary last comma
+        structure += '\n};'     //close object bracket
+
+        return structure;
     }
     
     var structure = '//file structure\n' +
         concat_arr + 
-        'var path = {\n'+
-        '\thtml: {\n'+
-        '\t\tsrc: \'dev/*.*\',\n'+
-        '\t\ttrg: \'pub/\'\n'+
-        '\t},\n'+
-        '\tcss: {\n'+
-        '\t\tsrc: \'dev/styles/*.*\',\n'+
-        '\t\ttrg: \'pub/css/\'\n'+
-        '\t},\n'+
-        '\tjs: {\n'+
-        '\t\tsrc: \'dev/scripts/*.*\',\n'+
-        '\t\ttrg: \'pub/js/\'\n'+
-        '\t}\n'+
-        '};' +
+        fs_builder(fs_template) +
         js_src_setter;
     
     return structure;    
 }
 
-
-
-
-/*
-        var concat_array = [];
-        var path = {
-            html: {
-                src: 'dev/*.*',
-                trg: 'pub/'
-            },
-            css: {
-                src: 'dev/css/*.*',
-                trg: 'pub/css/'
-            },
-            js: {
-                src: 'dev/js/*.*',
-                trg: 'pub/js/'
-            }
-        };
-        path.js.src = concat_array !== [] ? concat_array : 'dev/js/*.*';
-*/
-
-var fs_root = {
-    dev: {
-        scripts: '*.*',
-        styles: '*.*'
+var fs_folders = {      //folder names are taken from this object
+    src: {              //used by gf_file_structure and JSZip
+        root: 'dev',
+        js: 'scripts',
+        css: 'styles'
     },
-    pub: {
-        js: 0,
-        css: 0,
-        img: 0        
+    trg: {
+        root: 'pub',
+        js: 'js',
+        css: 'css'
     }
-};
-
-function jszip_builder(fs_obj) {
-//    proj.folder('dev').folder('scripts');
-//    proj.folder('dev').folder('styles');
-//    proj.folder('pub').folder('js');
-//    proj.folder('pub').folder('css');
-//    proj.folder('pub').folder('img');    
 }
 
-
-function fs_builder(fs_obj) {
-    
-}

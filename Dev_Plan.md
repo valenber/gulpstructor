@@ -33,6 +33,8 @@
     * ~~install dependencies listed for a plugin (e.g. jshint for gulp-jshint)~~
     * ~~add full lang descriptions~~
     * ~~add concatenation order array to the generated Gulpfile~~
+    * ~~Build gulpfile structure and zipped project structure off the same model~~
+    * ~~For concat_order array, autoappend the path.src.js folder, so adding filenames would be enough~~
 * Publish
 
 ##Remember to style
@@ -45,7 +47,7 @@
     * Extras
     * Plugin options
 * Hide extras that are irrelevant for selected languages (pug has option with cssnano functionality)
-* Build gulpfile structure and zipped project structure off the same model
+* add assets folder for image processing
 * Server only works with gulp-connect, make alternative options possible (Vagrant?)
 
 ##Bugs
