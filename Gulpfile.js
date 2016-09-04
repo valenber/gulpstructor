@@ -13,9 +13,9 @@ const gulp = require('gulp'),
 
 const path = {
     pug: 'dev/*.pug',
-    html: 'pub/',
+    html: 'docs/',
     sass: 'dev/sass/**/*.sass',
-    css: 'pub/css/',
+    css: 'docs/css/',
     js_s: ['dev/js/toolkit.js',             //add JS files in desired order
            'dev/js/user_msgs.js',
            'dev/js/plugins.js',
@@ -35,7 +35,7 @@ const path = {
            'dev/js/lib/filesaver.js',
            'dev/js/output.js'
           ],
-    js_t: 'pub/js/'
+    js_t: 'docs/js/'
 };
 
 //error handler
@@ -58,7 +58,7 @@ gulp.task('connect', function() {
 gulp.task('pug', function() {
     return gulp.src(path.pug)
         .pipe(pug({
-            pretty: '\t'
+            pretty: false
         }))
         .pipe(gulp.dest(path.html))
         .pipe(connect.reload());

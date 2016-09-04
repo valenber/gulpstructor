@@ -95,7 +95,7 @@ plugins.add(1, 1, 'SourceMaps', 'Creates references to original style files, tha
 
 //SCRIPT plugins
 plugins.add(0, 2, 'JavaScript', 'A high-level, dynamic, untyped, and interpreted programming language. Alongside HTML and CSS, it is one of the three core web-development technologies.', {}, 'base');
-plugins.add(0, 2, 'CoffeScript', 'A language that compiles into JavaScript. Underneath that awkward Java-esque patina, JavaScript has always had a gorgeous heart. CoffeeScript is an attempt to expose the good parts of JavaScript in a simple way.', {}, 'compiler');
+plugins.add(0, 2, 'CoffeeScript', 'A language that compiles into JavaScript. Underneath that awkward Java-esque patina, JavaScript has always had a gorgeous heart. CoffeeScript is an attempt to expose the good parts of JavaScript in a simple way.', {}, 'compiler');
 plugins.add(0, 2, 'TypeScript', 'A strict superset of JavaScript that adds optional static typing and class-based object-oriented programming to the language.', {}, 'compiler');
 plugins.add(1, 2, 'Concat', 'Concat Description.', {}, 'bundler', ['_scripts.js']);
 plugins.add(1, 2, 'JShint', 'Catches errors and makes suggestion on improving your JavaScript code.', {}, 'linter', ['', 'reporter_default'], ['jshint']);

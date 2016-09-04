@@ -12,7 +12,7 @@ html(lang="en")
                     span  (v1.0)
             .repo_link
                 a(href="https://github.com/valenber/gulpstructor" target="_blank")
-                    img(src="img/GitHub-Mark-32px.png")
+                    img(src="img/GitHub-Mark-32px.png" alt="Octocat")
                     span See Repository
         .small_device_note_wrap
             .small_device_note
@@ -20,10 +20,10 @@ html(lang="en")
         .about_wrapper
             .about
                 h1 
-                    | Use Gulpstructor to quickly set up 'Gulp'  for 
+                    | Use Gulpstructor to quickly set up 'Gulp' for 
                     br 
                     | your next development project
-                h2 Select required plugins/options and click Generate button
+                h2 Select required plugins/options and click on the Generate button
                 p#no_about Don't show again
         main
             form(id='gulp_data')
@@ -31,7 +31,7 @@ html(lang="en")
                     .section_title
                         h2 Structure
                     .languages
-                        h3.prompt How are you creating markup?
+                        h3.prompt How are you creating the markup?
                         .lang_list
                             ul
                         .lang_details
@@ -82,10 +82,9 @@ html(lang="en")
                         .section_title
                             h2 Save project
                         .section_content
-                            p#download_instructions If you do not wish to make any changes to the project structure or the gulp setup, here you can download zipped folder with the entire project and corresponding Gulpfile.
+                            p#download_instructions If you do not wish to make any changes to the project structure or the gulp setup, simply download the zipped folder with the entire project and corresponding Gulpfile.
                             #save_proj_btn_wrapper
                                 button#save_proj Download
-                    
                     #npm.section
                         .section_title
                             h2 NPM install
@@ -95,17 +94,16 @@ html(lang="en")
                                 code package.json 
                                 | with
                                 code  npm init
-                                | , run the following commands in the root of the project to install plugins required for your Gulpfile.
+                                | , run the following commands in the root of the project to install plugins required by your Gulpfile.
                             .section_controls
                                 p.notification.visible &nbsp;
                                 button.copy_btn#copy_npm(data-target='npm') Copy
                             #npm_text
-                    
                     #gulp.section
                         .section_title
                             h2 Gulpfile
                         .section_content
-                            p#gulpfile_instructions Save or Copy/Paste the following code to Gulpfile.js in the root of your project. You are welcome to make changes to it before copying or downloading.
+                            p#gulpfile_instructions Save or copy/paste the following code to Gulpfile.js in the root of your project. You are welcome to make changes to it before copying or downloading, but make sure there are no folder-structure conflicts.
                             .section_controls
                                 p.notification.visible &nbsp;
                                 a#download_gulpfile(href='blank', download='Gulpfile.js') Save
@@ -113,6 +111,6 @@ html(lang="en")
                             #gulpfile_text
         footer
             | Made by 
-            a(href='http://www.valentinberlin.com/', target='_blanc') Valentin Berlin
+            a(href='http://www.valentinberlin.com/', target='_blank') Valentin Berlin
             |  in 2016
         script(src='./js/scripts.js')

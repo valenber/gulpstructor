@@ -1,59 +1,21 @@
 #Development Plan
 
-##Before release
-* ~~Show/hide language details~~
-* ~~Style the options lists~~
-* ~~Basic Gulpfile generator~~
-    * ~~Process input data~~
-    * ~~Generate require text~~
-    * ~~Record file structure~~
-    * ~~Generate basic tasks~~
-    * ~~List NPM packages~~
-* ~~Add watch tasks~~
-* ~~Cleanup Gulpfile builder~~
-* ~~Combine pipes on the same target category~~
-    * ~~Change structure of input.input_object to 'target -> plugin -> options'~~
-    * ~~Change library plugin object to add order property~~
-* ~~Add extras to DOM~~
-* ~~Handler for plugins with multiple pipes/methods~~
-* ~~SourceMaps for CSS and JS~~
-* ~~Server/Livereload~~
-* ~~Default task~~
-* ~~Gulpfile output~~
-    * ~~Edit~~
-    * ~~Copy to Clipboard~~
-    * ~~Download Gulpfile~~
-    * ~~Download project~~
-* ~~Error Handler~~
-* ~~Footer~~
-* ~~About block~~
-* ~~Make responsive~~
-* ~~Review/test plugins~~
-    * ~~add target filename for concat~~
-    * ~~install dependencies listed for a plugin (e.g. jshint for gulp-jshint)~~
-    * ~~add full lang descriptions~~
-    * ~~add concatenation order array to the generated Gulpfile~~
-    * ~~Build gulpfile structure and zipped project structure off the same model~~
-    * ~~For concat_order array, autoappend the path.src.js folder, so adding filenames would be enough~~
-* Publish
+Here I will be listing new ideas and plans for the project
 
-##Remember to style
-* ~~Generate button~~
-* ~~Text input for Extras (e.g. Port)~~
-* ~~Link to repo:visited~~
-
-##Later
-* Floating descriptions for
+##What's Next? `--in no particular order--`
+* Descriptions for
     * Extras
     * Plugin options
-* Hide extras that are irrelevant for selected languages (pug has option with cssnano functionality)
-* add assets folder for image processing
-* Server only works with gulp-connect, make alternative options possible (Vagrant?)
+* Expand selection of plugins (ECMAScript 6, image processing/sprites, TDD suites)
+* Update UI and design
+* Add assets folder and image processing plugins
+* Hide extras that are irrelevant for selected languages (e.g. Sass can output compressed like cssnano)
+* Allow users to type options for plugins and save those options for the future
+* Allow users to add plugins of their choice (to be saved in LS)
+* PostCSS
+* Server currently uses gulp-connect, make alternative options (something for PHP, Vagrant?)
 
-##Bugs
-* ~~Options values are rendered in the reverse order due to CSS styling~~
-* ~~Pseudo radio buttons for options don't react to clicks~~
-* ~~ERROR if user selected nothing~~
-* ~~Gulp object is not reset~~
-* ~~When an extra plugin is unselected its options stay selected and produce error~~
-* ~~Downloaded Gulpfile.js produces error in Windows 10 on double-click~~
+##Remember to style
+* Default language selection (HTML, CSS, JS)
+
+##Bugs to fix
